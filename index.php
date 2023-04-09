@@ -20,10 +20,11 @@
 	 */
 
 	// Attempt to establish a connection to the database. Each developer must provide
-	// their own credentials files during development. See below:
+	// their own credentials files during development. Create a file called "db_creds"
+	// in the "utils" folder and define the username/password variables.
 	include "utils/db_init.php";
-	$creds = databaseFetchCredentials("utils/creds.ini");
-	$results = databaseEstablishConnection("z1836870", $creds["username"], $creds["password"]);
+	include "utils/db_creds.php";
+	$results = databaseEstablishConnection("z1836870", $username, $password);
 
 ?>
 

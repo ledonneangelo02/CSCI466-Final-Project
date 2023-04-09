@@ -1,2 +1,1 @@
-utils/creds.ini
-utils/*.ini
+utils/db_creds.php
