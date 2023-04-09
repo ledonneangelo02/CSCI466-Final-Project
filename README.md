@@ -1,11 +1,32 @@
-# CSCI466-Final-Project
+# CSCI466 Final Project
+
 CSCI 466 Database Section: 02 Semester: Spring 2023
 
-## Chris-Framework Documentation
+# Bootstrap
+
+In order to make designing simple to use, Bootstrap has been included in order to
+make it easier to design and lay out the structure of the project. The documentation
+for Bootstrap is here:
+
+https://getbootstrap.com/docs/5.3/getting-started/introduction/
+
+Most of the features that we will use for Bootstrap are under the Layout, Content,
+Forms, and Components section of Bootstrap. If you never used Bootstrap before, the
+best way to use it is to copy and paste the example code and modify it to work for
+what you're doing. It's generally easy to use as long as you avoid the more complicated
+stuff. If you have any questions, contact Chris.
+
+# Design Documentation
+
+### **Navigation Bar** components/navbar.php
+
+Provides navigation around the website.
+
+# API Documentation
 
 Below are some utilities and help functions that will be useful for development.
 
-### **databaseEstablishConnection**
+### [ Chris ] **databaseEstablishConnection** 
 
 ```php
 function

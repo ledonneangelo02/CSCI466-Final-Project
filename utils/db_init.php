@@ -23,8 +23,6 @@ databaseEstablishConnection($database, $username, $password)
 	$results["conn_stat"] = false;
 
 	try {
-	
-		echo $database . " " . $username . " " . $password;
 
 		$dsn = "mysql:host=courses;dbname=z1836870";
 		$pdo = new PDO($dsn, $username, $password);
