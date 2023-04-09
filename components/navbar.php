@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-expand-md bg-body-tertiary">
 	<div class="container-md">
-		<a class="navbar-brand" href="./">Karoake Management System</a>
+		<a class="navbar-brand" href="./">Karaoke Management System</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 			data-bs-target="#navbarNav" aria-controls="navbarNav"
 			aria-expanded="false" aria-label="Toggle navigation">
