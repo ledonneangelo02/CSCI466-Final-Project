@@ -24,7 +24,7 @@
 	// in the "utils" folder and define the username/password variables.
 	include "utils/db_init.php";
 	include "utils/db_creds.php";
-	$results = databaseEstablishConnection("z1836870", $username, $password);
+	$results = databaseEstablishConnection($database, $username, $password);
 
 	// Define $PDO if we have a connection, otherwise show an error.
 	if ($results["conn_stat"] == true)
