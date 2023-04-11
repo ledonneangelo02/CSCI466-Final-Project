@@ -8,5 +8,7 @@ CREATE TABLE Song (
 	Name        VARCHAR(100)    NOT NULL,
 	MainArtist  VARCHAR(100)    NOT NULL,
 	Genre       VARCHAR(25),
-	SongLen     INT(4)          NOT NULL
+	SongLen     INT(4)          NOT NULL,
+	CoverArt    VARCHAR(200)    NOT NULL
+
 );
