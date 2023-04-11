@@ -4,8 +4,9 @@
 #############################################
 CREATE TABLE Song (
 
-	ID          INT(3)         PRIMARY KEY AUTO_INCREMENT,
-	Name        VARCHAR(30)    NOT NULL,
-	MainArtist  VARCHAR(30)    NOT NULL,
-	SongLen     INT(4)         NOT NULL
+	ID          INT(3)          PRIMARY KEY AUTO_INCREMENT,
+	Name        VARCHAR(100)    NOT NULL,
+	MainArtist  VARCHAR(100)    NOT NULL,
+	Genre       VARCHAR(25),
+	SongLen     INT(4)          NOT NULL
 );
