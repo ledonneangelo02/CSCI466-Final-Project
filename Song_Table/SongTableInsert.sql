@@ -1,3 +1,8 @@
+######################################
+#  THIS IS AN SQL SCRIPT THAT WILL   #
+# INSERT ALL OF OUR SONGS INTO OUR   #
+# SONG TABLE                         #
+######################################
 INSERT into Song (Name,MainArtist,Genre,SongLen,CoverArt) VALUES("Senorita","Shawn Mendes","canadian pop",191,"https://upload.wikimedia.org/wikipedia/commons/8/8d/Shawn_Mendes_and_Camila_Cabello_-_Se%C3%B1orita.png");
 INSERT into Song (Name,MainArtist,Genre,SongLen,CoverArt) VALUES("boyfriend (with Social House)","Ariana Grande","dance pop",186,"https://upload.wikimedia.org/wikipedia/en/6/65/Ariana_Grande_and_Social_House_-_Boyfriend.png");
 INSERT into Song (Name,MainArtist,Genre,SongLen,CoverArt) VALUES("Beautiful People (feat. Khalid)","Ed Sheeran","pop",198,"https://upload.wikimedia.org/wikipedia/commons/f/fa/Ed_Sheeran_-_Beautiful_People.png");
