@@ -1,4 +1,4 @@
-mysql:host=courses;dbname=z058227<?php
+<?php
 
 /**
  * Performs the necessary initialization procedure required to connect to MariaDB.
@@ -15,6 +15,8 @@ mysql:host=courses;dbname=z058227<?php
  * 
  * @returns An array containing the results of the connection.
  */
+
+
 function
 databaseEstablishConnection($database, $username, $password)
 {

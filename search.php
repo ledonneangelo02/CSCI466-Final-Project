@@ -1,5 +1,5 @@
 <?php
-include "utils/db_init.php";
+    include "utils/db_init.php";
     include "utils/db_creds.php";
     $results = databaseEstablishConnection($database, $username, $password);
 
