@@ -72,17 +72,17 @@
 			while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 			?>
 			<form action="" method="POST">
-			<div class="card" style="width: 33%; float:left; margin: 0 auto; text-align: center;">
-  				<img src="<?php echo $row['CoverArt']; ?>" class="card-img-top" alt="<?php echo $row['MainArtist']; ?>">
-  				<div class="card-body">
-    				<h5 class="card-title" style=""><?php echo $row['Name']; ?></h5>
-    				<p class="card-text">Performed by: <?php echo $row['MainArtist']; ?></p>
-    				<input type="hidden" name="ID" value="<?php echo $row['ID']; ?>">
-    				<input type="submit" name="freeQ" class="btn btn-primary" value="Free Queue">
-    				<input type="submit" name="paidQ" class="btn btn-success" value="Paid Queue">
-  				</div>
-			</div>
-		</form>
+				<div class="card" style="width: 33%; float:left; margin: 0 auto; text-align: center; height: 680px;">
+					<img src="<?php echo $row['CoverArt']; ?>" height="400px" class="card-img-top" alt="<?php echo $row['MainArtist']; ?>">
+					<div class="card-body">
+						<h5 class="card-title" style=""><?php echo $row['Name']; ?></h5>
+						<p class="card-text">Performed by: <?php echo $row['MainArtist']; ?></p>
+						<input type="hidden" name="ID" value="<?php echo $row['ID']; ?>">
+						<input type="submit" name="freeQ" class="btn btn-primary" value="Free Queue">
+						<input type="submit" name="paidQ" class="btn btn-success" value="Paid Queue">
+					</div>
+				</div>
+			</form>
 			<?php
 			}
 			?>

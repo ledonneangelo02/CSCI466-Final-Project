@@ -1,4 +1,4 @@
-mysql:host=courses;dbname=z058227<?php
+<?php
 
 /**
  * Performs the necessary initialization procedure required to connect to MariaDB.
@@ -24,8 +24,8 @@ databaseEstablishConnection($database, $username, $password)
 
 	try {
 
-		$dsn = "mysql:host=courses;dbname=z058227";
-		$pdo = new PDO($database, $username, $password);
+		$dsn = "mysql:host=courses;dbname=z1836870";
+		$pdo = new PDO($dsn, $username, $password);
 		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 	
 		$results["conn_stat"] = true;
