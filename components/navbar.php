@@ -2,7 +2,9 @@
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
 	<div class="container-md">
-		<a class="navbar-brand" href="./">Karaoke Management System</a>
+		<a class="navbar-brand" href="./">
+			<img src="assets/path50.svg" alt="DJ Logo" height="40" style="filter:invert(100%);">
+		</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 			data-bs-target="#navbarNav" aria-controls="navbarNav"
 			aria-expanded="false" aria-label="Toggle navigation">
