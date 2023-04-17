@@ -15,6 +15,8 @@
  * 
  * @returns An array containing the results of the connection.
  */
+
+
 function
 databaseEstablishConnection($database, $username, $password)
 {
