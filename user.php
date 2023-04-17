@@ -18,6 +18,9 @@
 	<head>
 		<title>CSCI 466 Group Project - User Page</title>
 
+		<!-- CSS Include -->
+		<link rel="stylesheet" href="styles.css">
+
 		<!-- Bootstrap CSS/JS Framework -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
 		rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
@@ -28,43 +31,23 @@
 
 
 		<!-- JavaScript Includes -->
-		<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
 	
 
-
-
-		<!-- Autocomplete Search -->
-		<script>
-        $(function() {
-            //autocomplete
-            $("#song_search").autocomplete({
-                source: "search.php",
-                minLength: 3
-            });                
-
-        });
-		</script>
 
 	</head>
 	<body>
 
 		<?php include "components/navbar.php";
-		echo "POST dump<br>";
+		echo "<br><br><br><br>POST dump<br>";
 		var_dump($_POST);
 		?>
 		
 
-		<div>
-		<form action="" method="POST">
-      		<input class="form-control mr-lg-2" type="search" placeholder="Search for anything" id="song_search" aria-label="song_search" name="song_search">
-      		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    	</form> 
-    	</div>
-
 
     	<br><br><br>
+    	<h2>Search Results</h2>
     	<div class="container-md">
 			<?php
 
@@ -72,21 +55,30 @@
 			while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 			?>
 			<form action="" method="POST">
-			<div class="card" style="width: 33%; float:left; margin: 0 auto; text-align: center;">
-  				<img src="<?php echo $row['CoverArt']; ?>" class="card-img-top" alt="<?php echo $row['MainArtist']; ?>">
-  				<div class="card-body">
-    				<h5 class="card-title" style=""><?php echo $row['Name']; ?></h5>
-    				<p class="card-text">Performed by: <?php echo $row['MainArtist']; ?></p>
-    				<input type="hidden" name="ID" value="<?php echo $row['ID']; ?>">
-    				<input type="submit" name="freeQ" class="btn btn-primary" value="Free Queue">
-    				<input type="submit" name="paidQ" class="btn btn-success" value="Paid Queue">
-  				</div>
-			</div>
+			
+				<div class="card" style="width:33%;min-height:600px; float: left; margin: 0 auto; text-align: center;">
+  					<img src="<?php echo $row['CoverArt']; ?>" class="card-img-top" alt="<?php echo $row['MainArtist']; ?>">
+  					<div class="card-body">
+    					<h5 class="card-title" style=""><?php echo $row['Name']; ?></h5>
+    					<p class="card-text">Performed by: <?php echo $row['MainArtist']; ?></p>
+    					<input type="hidden" name="ID" value="<?php echo $row['ID']; ?>">
+    					<div class="card-footer align-bottom">
+    						<input type="submit" name="freeQ" class="btn btn-primary" value="Free Queue">&nbsp;&nbsp;<input type="submit" name="paidQ" class="btn btn-success" value="Paid Queue">
+    					</div>	
+  					</div>
+				</div>
+			
 		</form>
 			<?php
 			}
 			?>
 	
 		</div>
+		<br><br>
+
+		<div class="container-md">
+			<h2>Current Song Queue</h2>
+
+		</div>	
 	</body>
 </html>
