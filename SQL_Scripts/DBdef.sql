@@ -1,7 +1,15 @@
-#############################################
-#	This Script will generate the       #
-#   Song table and fill it with information #
-#############################################
+##########################################
+# CSCI 466  FINAL GROUP PROJECT  SEC: 02 #
+#					 #
+#  This is a SQL Script that will create #
+#     the DDL for our entire database.   #
+#					 #
+#    By:    Angelo LeDonne z1920784      #
+#           Chris Dejong   z1836870      #
+#           Mark Southwood z058227       #
+#           Milad Jizan    z1943173      #
+##########################################
+
 DROP TABLE Enqueues;
 DROP TABLE Contributes;
 DROP TABLE Performs;
@@ -11,6 +19,7 @@ DROP TABLE KaraokeFile;
 DROP TABLE Role;
 DROP TABLE Artist;
 DROP TABLE Song;
+
 
 CREATE TABLE Song (
 
@@ -104,3 +113,5 @@ CREATE TABLE Enqueues
 
 \. SongInsert.sql
 \. ArtistInsert.sql
+\. PersonInsert.sql
+
