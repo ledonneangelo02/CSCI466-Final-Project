@@ -40,7 +40,7 @@ INSERT INTO Artist (Name) VALUES("Rick Ross");
 INSERT INTO Artist (Name) VALUES("Macklemore");
 INSERT INTO Artist (Name) VALUES("J. Cole");
 INSERT INTO Artist (Name) VALUES("Travis Scott");
-INSERT INTO Artist (Name) VALUES("Patrick Stump");
+INSERT INTO Artist (Name, Band) VALUES("Patrick Stump", "Fall Out Boys");
 INSERT INTO Artist (Name) VALUES("Chance The Rapper");
 INSERT INTO Artist (Name) VALUES("PnB Rock");
 INSERT INTO Artist (Name) VALUES("Kane Brown");
