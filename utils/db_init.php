@@ -15,6 +15,8 @@
  * 
  * @returns An array containing the results of the connection.
  */
+
+
 function
 databaseEstablishConnection($database, $username, $password)
 {
@@ -24,8 +26,8 @@ databaseEstablishConnection($database, $username, $password)
 
 	try {
 
-		$dsn = "mysql:host=courses;dbname=z1836870";
-		$pdo = new PDO($database, $username, $password);
+		$dsn = "mysql:host=courses;dbname=$database";
+		$pdo = new PDO($dsn, $username, $password);
 		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 	
 		$results["conn_stat"] = true;
