@@ -55,7 +55,7 @@
 
 		<?php include "components/navbar.php"; ?>
 
-		<div id="carouselExample" class="carousel slide bg-dark-subtle" data-bs-ride="carousel">
+		<div id="carouselExample" class="carousel slide bg-dark-subtle" data-bs-ride="carousel" style="background-image:url('assets/front_banner.jpg'); background-size:cover; background-position:center;">
 			<div class="carousel-inner">
 				<?php
 					$query 	= "SELECT * FROM Song";
@@ -76,12 +76,12 @@
 						{
 							echo "<div class=\"carousel-item\">";
 						}
-						echo "<img height=\"400px\" src=\"" . $row["CoverArt"] . "\" class=\"d-block\">";
+						echo "<img height=\"600px\" src=\"" . $row["CoverArt"] . "\" class=\"d-block\">";
 				?>
 						<div class="container carousel-caption d-none d-md-block">
-							<h1 class="text-light"><?php  $v = $i % 4; echo $taglines[$v]; ?></h1>
-							<h2 class="text-secondary-emphasis"><i><?php echo $row["Name"]; ?></i></h2>
-							<p class="text-secondary">Performed by: <?php echo $row["MainArtist"]; ?></p>
+								<h1 class="text-light" style="text-shadow: 4px 3px 7px black;"><?php  $v = $i % 4; echo $taglines[$v]; ?></h1>
+								<h2 class="text-light" style="text-shadow: 4px 3px 7px black;"><i><?php echo $row["Name"]; ?></i></h2>
+								<p class="text-light" style="text-shadow: 4px 3px 5px black;">Performed by: <?php echo $row["MainArtist"]; ?></p>
 						</div>
 				<?php
 						echo "</div>";
@@ -99,8 +99,5 @@
 			</button>
 			</div>
 		</div>
-
-		<img src="assets/front_banner.jpg" style="width:100%; height:60vh; object-fit: cover;"/>
-
 	</body>
 </html>
