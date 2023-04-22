@@ -81,7 +81,6 @@
 						<div class="container carousel-caption d-none d-md-block">
 								<h1 class="text-light" style="text-shadow: 4px 3px 7px black;"><?php  $v = $i % 4; echo $taglines[$v]; ?></h1>
 								<h2 class="text-light" style="text-shadow: 4px 3px 7px black;"><i><?php echo $row["Name"]; ?></i></h2>
-								<p class="text-light" style="text-shadow: 4px 3px 5px black;">Performed by: <?php echo $row["MainArtist"]; ?></p>
 						</div>
 				<?php
 						echo "</div>";
@@ -99,5 +98,6 @@
 			</button>
 			</div>
 		</div>
+
 	</body>
 </html>
