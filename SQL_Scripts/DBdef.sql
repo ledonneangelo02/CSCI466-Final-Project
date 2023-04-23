@@ -1,8 +1,8 @@
 ##########################################
 # CSCI 466  FINAL GROUP PROJECT  SEC: 02 #
 #					 #
-#  This is a SQL Script that will create #
-#     the DDL for our entire database.   #
+#  THIS IS A SQL SCRIPT THAT WILL CREATE #
+#     THE DDL FOR OUR ENTIRE DATABASE.   #
 #					 #
 #    By:    Angelo LeDonne z1920784      #
 #           Chris Dejong   z1836870      #
@@ -60,8 +60,7 @@ CREATE TABLE Queue
 CREATE TABLE Person
 (
 	ID             INT(3)        PRIMARY KEY AUTO_INCREMENT,
-	IsTheDJ        CHAR(1)       DEFAULT 'N',
-	FirstName      VARCHAR(30)   NOT NULL,
+	Name           VARCHAR(30)   NOT NULL,
 	Email          VARCHAR(200), 
 	LastName       VARCHAR(30),
 	AddressLine1   VARCHAR(100),
