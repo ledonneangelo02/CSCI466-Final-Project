@@ -1,16 +1,13 @@
 ##########################################
 # CSCI 466  FINAL GROUP PROJECT  SEC: 02 #
-<<<<<<< HEAD
 #					 #
 #  THIS IS A SQL SCRIPT THAT WILL CREATE #
 #     THE DDL FOR OUR ENTIRE DATABASE.   #
 #					 #
-=======
 #                                        #
 #  This is a SQL Script that will create #
 #     the DDL for our entire database.   #
 #                                        #
->>>>>>> 36e728012d094c0d2538cde1eef25741f16fabfe
 #    By:    Angelo LeDonne z1920784      #
 #           Chris Dejong   z1836870      #
 #           Mark Southwood z058227       #
@@ -84,12 +81,9 @@ CREATE TABLE FFAQueue
 CREATE TABLE Person
 (
 	ID             INT(3)        PRIMARY KEY AUTO_INCREMENT,
-<<<<<<< HEAD
 	Name           VARCHAR(30)   NOT NULL,
 	Email          VARCHAR(200), 
-=======
 	FirstName      VARCHAR(30)   NOT NULL,
->>>>>>> 36e728012d094c0d2538cde1eef25741f16fabfe
 	LastName       VARCHAR(30),
 	Email          VARCHAR(200), 
 	AddressLine1   VARCHAR(100),

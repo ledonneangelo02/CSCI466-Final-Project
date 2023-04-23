@@ -14,20 +14,22 @@
 
 
 #Make sure we have .sql files in our directory
+rm SongInsert.sql
+rm ArtistInsert.sql
 touch SongInsert.sql
 touch ArtistInsert.sql
 
 #insert a header into the ArtistInsert.sql File
-echo "##########################################\n
-# CSCI 466  FINAL GROUP PROJECT  SEC: 02 #\n
-#					 #\n
-#     THIS IS A HELPER FUNCTION FOR SQL  #\n
-#  SCRIPT CREATION                       #\n
-#					 #\n
-#    By:    Angelo LeDonne z1920784      #\n
-#           Chris Dejong   z1836870      #\n
-#           Mark Southwood z058227       #\n
-#           Milad Jizan    z1943173      #\n
+echo "########################################## 
+# CSCI 466  FINAL GROUP PROJECT  SEC: 02 #
+#                                        #
+#     THIS IS A HELPER FUNCTION FOR SQL  #
+#  SCRIPT CREATION                       #
+#                                        #
+#    By:    Angelo LeDonne z1920784      # 
+#           Chris Dejong   z1836870      #
+#           Mark Southwood z058227       #
+#           Milad Jizan    z1943173      #
 ##########################################" >> ArtistInsert.sql
 
 
