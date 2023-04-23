@@ -42,10 +42,10 @@ IFS=','
 while read name MA gen len CA
 do
 
-	echo "INSERT INTO Song (Name,MainArtist,Genre,SongLen,CoverArt) VALUES(\"$name\",\"$MA\",\"$gen\",$len,\"$CA\");" >> SongInsert.sql
+	echo "INSERT INTO Song (Name,Genre,SongLen,CoverArt) VALUES(\"$name\",\"$gen\",$len,\"$CA\");" >> SongInsert.sql
 
 
-	echo "INSERT INTO Artist (FirstName) VALUES(\"$MA\");" >> ArtistInsert.sql
+	echo "INSERT INTO Artist (Name) VALUES(\"$MA\");" >> ArtistInsert.sql
 
 done < $INPUT
 IFS=$OLDIFS
