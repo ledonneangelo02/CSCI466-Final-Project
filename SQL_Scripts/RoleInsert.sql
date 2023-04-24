@@ -10,4 +10,7 @@
 #           Milad Jizan    z1943173      #
 ##########################################
 
-INSERT INTO Role ()
+INSERT INTO Role (RoleType) VALUES ("Main Artist");
+INSERT INTO Role (RoleType) VALUES ("Featured Artist");
+INSERT INTO Role (RoleType) VALUES ("Producer");
+INSERT INTO Role (RoleType) VALUES ("Writer");

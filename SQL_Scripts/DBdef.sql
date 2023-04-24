@@ -54,8 +54,8 @@ CREATE TABLE Role
 
 CREATE TABLE KaraokeFile
 (
-	ID            INT(3)        PRIMARY KEY AUTO_INCREMENT,
-	File          VARCHAR(50)   NOT NULL 	
+	ID            INT(3)         PRIMARY KEY AUTO_INCREMENT,
+	File          VARCHAR(200)   NOT NULL 	
 );
 
 CREATE TABLE Queue
@@ -81,8 +81,6 @@ CREATE TABLE FFAQueue
 CREATE TABLE Person
 (
 	ID             INT(3)        PRIMARY KEY AUTO_INCREMENT,
-	Name           VARCHAR(30)   NOT NULL,
-	Email          VARCHAR(200), 
 	FirstName      VARCHAR(30)   NOT NULL,
 	LastName       VARCHAR(30),
 	Email          VARCHAR(200), 
@@ -149,4 +147,5 @@ CREATE TABLE Enqueues
 \. SongInsert.sql
 \. ArtistInsert.sql
 \. PersonInsert.sql
-
+\. RoleInsert.sql
+\. KFInsert.sql

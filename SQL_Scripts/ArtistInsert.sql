@@ -9,6 +9,7 @@
 #           Mark Southwood z058227       #
 #           Milad Jizan    z1943173      #
 ##########################################
+
 INSERT INTO Artist (Name) VALUES("Shawn Mendes");
 INSERT INTO Artist (Name) VALUES("Ariana Grande");
 INSERT INTO Artist (Name) VALUES("Ed Sheeran");

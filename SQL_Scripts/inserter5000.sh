@@ -16,6 +16,8 @@
 #Make sure we have .sql files in our directory
 rm SongInsert.sql
 rm ArtistInsert.sql
+rm KFInsert.sql
+touch KFInsert.sql
 touch SongInsert.sql
 touch ArtistInsert.sql
 
@@ -30,11 +32,13 @@ echo "##########################################
 #           Chris Dejong   z1836870      #
 #           Mark Southwood z058227       #
 #           Milad Jizan    z1943173      #
-##########################################" >> ArtistInsert.sql
+##########################################
+" >> ArtistInsert.sql
 
 
 #copy the header into the SongInsert.sql File
 cp ArtistInsert.sql SongInsert.sql
+cp ArtistInsert.sql KFInsert.sql
 
 #Defining our data file where all the info is stored
 INPUT=songs.csv
@@ -45,13 +49,21 @@ while read name MA gen len CA
 do
 
 	echo "INSERT INTO Song (Name,Genre,SongLen,CoverArt) VALUES(\"$name\",\"$gen\",$len,\"$CA\");" >> SongInsert.sql
-
-
 	echo "INSERT INTO Artist (Name) VALUES(\"$MA\");" >> ArtistInsert.sql
+	
+	echo "INSERT INTO Performs (SongID, ArtistID) VALUES(LAST_INSERT_ID(),LAST_INSERT_ID())"
 
 done < $INPUT
 IFS=$OLDIFS
 
+
+filepath=$(pwd)
+fp=$filepath/KFLyricFiles
+
+for FILE in "$fp"/*.txt; do
+
+	echo "INSERT INTO KaraokeFile (File) VALUES (\"$FILE\");" >> KFInsert.sql
+done
 
 
 

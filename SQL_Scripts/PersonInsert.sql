@@ -15,3 +15,9 @@ INSERT INTO Person (FirstName, Email, LastName, AddressLine1, AddressLine2) VALU
 INSERT INTO Person (FirstName, Email, LastName, AddressLine1, AddressLine2) VALUES ('Mark','z058227@students.niu.edu','Southwood','999 Bndover Ct.', 'Dekalb, Illinois 60115');
 INSERT INTO Person (FirstName, Email, LastName, AddressLine1, AddressLine2) VALUES ('Milad','z1943173@students.niu.edu','Jizan','56 Wilie Cir.', 'Dekalb, Illinois 60115');
 INSERT INTO Person (FirstName, Email, LastName, AddressLine1, AddressLine2) VALUES ('Jon','lehuta@niu.edu','Lehuta','466 Sequel Dr.', 'Apt. 69 Dekalb, Illinois 60115');
+
+INSERT INTO Client (PersonID) VALUES ("1");
+INSERT INTO Client (PersonID) VALUES ("2");
+INSERT INTO Client (PersonID) VALUES ("3");
+INSERT INTO Client (PersonID) VALUES ("4");
+INSERT INTO DJ (PersonID) VALUES ("5");
