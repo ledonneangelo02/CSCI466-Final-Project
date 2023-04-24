@@ -1,5 +1,9 @@
 ##########################################
 # CSCI 466  FINAL GROUP PROJECT  SEC: 02 #
+#					 #
+#  THIS IS A SQL SCRIPT THAT WILL CREATE #
+#     THE DDL FOR OUR ENTIRE DATABASE.   #
+#					 #
 #                                        #
 #  This is a SQL Script that will create #
 #     the DDL for our entire database.   #
@@ -50,8 +54,8 @@ CREATE TABLE Role
 
 CREATE TABLE KaraokeFile
 (
-	ID            INT(3)        PRIMARY KEY AUTO_INCREMENT,
-	File          VARCHAR(50)   NOT NULL 	
+	ID            INT(3)         PRIMARY KEY AUTO_INCREMENT,
+	File          VARCHAR(200)   NOT NULL 	
 );
 
 CREATE TABLE Queue
@@ -143,4 +147,5 @@ CREATE TABLE Enqueues
 \. SongInsert.sql
 \. ArtistInsert.sql
 \. PersonInsert.sql
-
+\. RoleInsert.sql
+\. KFInsert.sql
