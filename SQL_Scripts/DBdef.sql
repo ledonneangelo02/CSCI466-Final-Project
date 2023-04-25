@@ -104,7 +104,7 @@ CREATE TABLE Contributes
 	SongID      INT(3) NOT NULL,
 	RoleID      INT(3) NOT NULL,
 	ArtistID    INT(3) NOT NULL,
-	DateAndTime DATETIME NOT NULL,
+	DateAndTime DATETIME NOT NULL DEFAULT now(),
 
 	PRIMARY KEY (SongID, RoleID, ArtistID),
 
@@ -119,8 +119,7 @@ CREATE TABLE Enqueues
 	KarFileID   INT(3) NOT NULL,
 	PersonID    INT(3) NOT NULL,
 	QueueID     INT(3) NOT NULL,
-	DateAndTime DATETIME NOT NULL,
-
+	DateAndTime DATETIME NOT NULL DEFAULT now(),
 	PRIMARY KEY (KarFileID, PersonID, QueueID),
 
 	FOREIGN KEY (KarFileID) REFERENCES KaraokeFile(ID),
@@ -135,4 +134,6 @@ CREATE TABLE Enqueues
 \. RoleInsert.sql
 \. KFInsert.sql
 \. AssociatedWithInsert.sql
+\. ContributesInsert.sql
+\. EnqueuesInsert.sql
 

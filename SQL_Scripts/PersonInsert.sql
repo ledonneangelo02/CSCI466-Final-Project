@@ -22,7 +22,7 @@ INSERT INTO Person (FirstName, Email, LastName, AddressLine1, AddressLine2) VALU
 INSERT INTO Person (FirstName, Email, LastName, AddressLine1, AddressLine2) VALUES ('Adam',' ','Sandler','965 GoodIdea Rd.','Dekalb, Illinois 60115');
 INSERT INTO Person (FirstName, Email, LastName, AddressLine1, AddressLine2) VALUES ('Mya',' ','Kaleafa','78 Buheht St. ','Dekalb, Illinois 60115');
 
-INSERT INTO Person (FirstName, Email, LastName, AddressLine1, AddressLine2) VALUES ('Jon','lehuta@niu.edu','Lehuta','466 Sequel Dr.', 'Apt. 69 Dekalb, Illinois 60115');
+INSERT INTO Person (FirstName, Email, LastName, AddressLine1, AddressLine2) VALUES ('Jon','lehuta@niu.edu','Lehuta','466 Sequel Dr.', 'Apt. 69, Dekalb, Illinois 60115');
 
 INSERT INTO Client (PersonID) VALUES ('01');
 INSERT INTO Client (PersonID) VALUES ('02');
