@@ -14,11 +14,9 @@
 #           Milad Jizan    z1943173      #
 ##########################################
 
-DROP TABLE FFAQueue;
-DROP TABLE PriorityQueue;
 DROP TABLE Enqueues;
 DROP TABLE Contributes;
-DROP TABLE Performs;
+DROP TABLE AssociatedWith;
 DROP TABLE DJ;
 DROP TABLE Client;
 DROP TABLE Person;
@@ -136,3 +134,5 @@ CREATE TABLE Enqueues
 \. PersonInsert.sql
 \. RoleInsert.sql
 \. KFInsert.sql
+\. AssociatedWithInsert.sql
+
