@@ -40,6 +40,7 @@ echo "##########################################
 cp ArtistInsert.sql SongInsert.sql
 cp ArtistInsert.sql KFInsert.sql
 
+
 #Defining our data file where all the info is stored
 INPUT=songs.csv
 OLDIFS=$IFS
@@ -51,7 +52,6 @@ do
 	echo "INSERT INTO Song (Name,Genre,SongLen,CoverArt) VALUES(\"$name\",\"$gen\",$len,\"$CA\");" >> SongInsert.sql
 	echo "INSERT INTO Artist (Name) VALUES(\"$MA\");" >> ArtistInsert.sql
 	
-	echo "INSERT INTO Performs (SongID, ArtistID) VALUES(LAST_INSERT_ID(),LAST_INSERT_ID())"
 
 done < $INPUT
 IFS=$OLDIFS
