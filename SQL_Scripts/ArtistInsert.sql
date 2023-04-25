@@ -37,8 +37,9 @@ INSERT INTO Artist (Name) VALUES("Marshmello");
 
 INSERT INTO Artist (Name) VALUES("Rick Ross");
 INSERT INTO Artist (Name) VALUES("Social House");
-INSERT INTO Artist (Name) VALUES("Jusin Bieber");
+INSERT INTO Artist (Name) VALUES("Justin Bieber");
 INSERT INTO Artist (Name) VALUES("Chance The Rapper");
 INSERT INTO Artist (Name) VALUES("Macklemore");
 INSERT INTO Artist (Name, Band) VALUES("Patrick Stump", "Fall Out Boys");
 INSERT INTO Artist (Name) VALUES("PnB Rock");
+INSERT INTO Artist (Name) VALUES("J Cole");
