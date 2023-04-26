@@ -14,11 +14,9 @@
 #           Milad Jizan    z1943173      #
 ##########################################
 
-DROP TABLE FFAQueue;
-DROP TABLE PriorityQueue;
 DROP TABLE Enqueues;
 DROP TABLE Contributes;
-DROP TABLE Performs;
+DROP TABLE AssociatedWith;
 DROP TABLE DJ;
 DROP TABLE Client;
 DROP TABLE Person;
@@ -61,22 +59,10 @@ CREATE TABLE KaraokeFile
 CREATE TABLE Queue
 (
 	ID     INT(3)  PRIMARY KEY AUTO_INCREMENT,
-	IsPaid CHAR(1) NOT NULL DEFAULT 'N'
+	IsPaid CHAR(1) NOT NULL  DEFAULT 'N',
+	Status INT(1)  NOT NULL  DEFAULT 0
 );
 
-CREATE TABLE PriorityQueue
-(
-	QueueID     INT(3)  PRIMARY KEY,
-
-	FOREIGN KEY (QueueID) REFERENCES Queue(ID)
-);
-
-CREATE TABLE FFAQueue
-(
-	QueueID     INT(3)  PRIMARY KEY,
-
-	FOREIGN KEY (QueueID) REFERENCES Queue(ID)
-);
 
 CREATE TABLE Person
 (
@@ -100,12 +86,11 @@ CREATE TABLE DJ
 	FOREIGN KEY (PersonID) REFERENCES Person(ID)
 );
 
-CREATE TABLE Performs
+CREATE TABLE AssociatedWith
 (
 	ArtistID  INT(3) NOT NULL, 
 	KarFileID INT(3) NOT NULL,
 	SongID    INT(3) NOT NULL,
-	Lyrics    VARCHAR(7) NOT NULL,
 
 	PRIMARY KEY (ArtistID, KarFileID),
 
@@ -119,7 +104,7 @@ CREATE TABLE Contributes
 	SongID      INT(3) NOT NULL,
 	RoleID      INT(3) NOT NULL,
 	ArtistID    INT(3) NOT NULL,
-	DateAndTime DATETIME NOT NULL,
+	DateAndTime DATETIME NOT NULL DEFAULT now(),
 
 	PRIMARY KEY (SongID, RoleID, ArtistID),
 
@@ -134,8 +119,7 @@ CREATE TABLE Enqueues
 	KarFileID   INT(3) NOT NULL,
 	PersonID    INT(3) NOT NULL,
 	QueueID     INT(3) NOT NULL,
-	DateAndTime DATETIME NOT NULL,
-
+	DateAndTime DATETIME NOT NULL DEFAULT now(),
 	PRIMARY KEY (KarFileID, PersonID, QueueID),
 
 	FOREIGN KEY (KarFileID) REFERENCES KaraokeFile(ID),
@@ -149,3 +133,7 @@ CREATE TABLE Enqueues
 \. PersonInsert.sql
 \. RoleInsert.sql
 \. KFInsert.sql
+\. AssociatedWithInsert.sql
+\. ContributesInsert.sql
+\. EnqueuesInsert.sql
+

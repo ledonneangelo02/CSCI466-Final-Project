@@ -14,3 +14,6 @@ INSERT INTO Role (RoleType) VALUES ("Main Artist");
 INSERT INTO Role (RoleType) VALUES ("Featured Artist");
 INSERT INTO Role (RoleType) VALUES ("Producer");
 INSERT INTO Role (RoleType) VALUES ("Writer");
+INSERT INTO Role (RoleType) VALUES ("Drummer");
+INSERT INTO Role (RoleType) VALUES ("Guitarist");
+INSERT INTO Role (RoleType) VALUES ("Bass Player");
