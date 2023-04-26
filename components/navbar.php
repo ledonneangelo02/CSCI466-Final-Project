@@ -20,8 +20,8 @@
 				</li>
 			</ul>
 			<form class="d-flex my-auto" action="" method="POST">
-      			<input class="form-control mr-sm-2" type="search" id="search" placeholder="Search for ANYTHING" aria-label="Search" autocomplete="off" required>
-      			<button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="search">Search</button>
+      			<input class="form-control mr-sm-2" type="search" id="search" name="search" placeholder="Search for ANYTHING" aria-label="Search" autocomplete="off" required>
+      			<button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="navsearch" value="navsearch">Search</button>
     		</form>
 		</div>
 	</div>

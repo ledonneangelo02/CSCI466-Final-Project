@@ -59,60 +59,34 @@
         </div>
 		-->
 
-    	<h2>Search Results</h2>
+		<?php
+
+		if (isset($search_string)) 
+			echo "<h2>Search Results</h2>";
+		if (isset($search_song)) {
+			echo "<h3>Song Search</h3>";
+			displaySongs($PDO, $search_song);
+			}
+			?>
+			<div style="clear:both;">
+			</div>
+		<?php	
+		if (isset($search_artist)) {
+			echo "<h3>Artist Search</h3>";
+			displaySongs($PDO, $search_artist);
+			}
+			?>
+			<div style="clear:both;">
+			</div>	
+			
+	
+
+    	<h2>Browse Songs</h2>
     	<div class="container-md">	
 		<?php
 		$result = $PDO->query("SELECT * FROM `Song`;");
-		while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-			$songID = $row['ID'];
-			$mainArtist = getSongArtist($PDO, $songID);
+		displaySongs($PDO, $result);
 		?>
-			<form action="" method="POST">
-				<div class="card-deck">
-					<div class="card" style="width:33%;min-height:680px; float: left; margin: 0 auto; text-align: center;">
-  						<img src="<?php echo $row['CoverArt']; ?>" class="card-img-top" alt="<?php echo $row['MainArtist']; ?>">
-  						<div class="card-body">
-    					<h5 class="card-title" style=""><?php echo $row['Name']; ?></h5>
-    					<p class="card-text">Performed by: <?php echo $mainArtist; ?></p>
-    					User:<br>
-    					<select name="Client">
-    						<?php
-    						$resultB = $PDO->query("SELECT * FROM `Person`;");
-								while ($rowB = $resultB->fetch(PDO::FETCH_ASSOC)) {
-									?>
-									<option value="<?php echo $rowB['ID']; ?>"><?php echo $rowB['FirstName'] . " " . $rowB['LastName'];?></option> 	
-
-								<?php
-								}	
-    							?>
-    						
-    					</select>
-    					<br>
-    					Karaoke File:<br>
-    					<select name="KFile">
-    						<?php
-    						$resultC = $PDO->query("SELECT * FROM `AssociatedWith` WHERE `SongID` = '$songID';");
-    							$version = 0;
-								while ($rowC = $resultC->fetch(PDO::FETCH_ASSOC)) {
-									$version++;
-									?>
-									<option value="<?php echo $rowC['KarFileID']; ?>">Version <?php echo $version; ?></option> 	
-
-								<?php
-								}	
-    							?>
-    						
-    					</select>
-    					<br>
-    					<input type="hidden" name="ID" value="<?php echo $songID; ?>">
-    					<input type="submit" name="freeQ" class="btn btn-primary" value="Free Queue">&nbsp;&nbsp;<input type="submit" name="paidQ" class="btn btn-success" value="Paid Queue">	
-  					</div>
-				</div>
-			</form>
-		<?php
-		}
-		?>
-	
 		</div>
 		<div style="clear:both;">
 		</div>	
