@@ -142,3 +142,6 @@ INSERT INTO AssociatedWith (ArtistID, KarFileID, SongID) VALUES ('32','54','22')
 INSERT INTO AssociatedWith (ArtistID, KarFileID, SongID) VALUES ('32','56','22');
 INSERT INTO AssociatedWith (ArtistID, KarFileID, SongID) VALUES ('32','57','22');
 INSERT INTO AssociatedWith (ArtistID, KarFileID, SongID) VALUES ('32','58','22');
+
+#Pinkfong
+INSERT INTO AssociatedWith (ArtistID, KarFileID, SongID) VALUES ('33','63','33');

@@ -72,3 +72,4 @@ INSERT INTO KaraokeFile (File) VALUES ("/home/hopper/z1920784/public_html/CSCI46
 INSERT INTO KaraokeFile (File) VALUES ("/home/hopper/z1920784/public_html/CSCI466-Final-Project/SQL_Scripts/KFLyricFiles/The London (feat. J. Cole & Travis Scott)v7.txt");
 INSERT INTO KaraokeFile (File) VALUES ("/home/hopper/z1920784/public_html/CSCI466-Final-Project/SQL_Scripts/KFLyricFiles/Truth Hurts.txt");
 INSERT INTO KaraokeFile (File) VALUES ("/home/hopper/z1920784/public_html/CSCI466-Final-Project/SQL_Scripts/KFLyricFiles/You Need To Calm Down.txt");
+INSERT INTO KaraokeFile (File) VALUES ("/home/hopper/z1920784/public_html/CSCI466-Final-Project/SQL_Scripts/KFLyricFiles/Baby Shark.txt");

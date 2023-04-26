@@ -42,3 +42,4 @@ INSERT INTO Song (Name,Genre,SongLen,CoverArt) VALUES("One Thing Right","brostep
 INSERT INTO Song (Name,Genre,SongLen,CoverArt) VALUES("Happier","brostep",214,"https://upload.wikimedia.org/wikipedia/en/e/e5/Marshmello_and_Bastille_Happier.png");
 INSERT INTO Song (Name,Genre,SongLen,CoverArt) VALUES("Call You Mine","edm",218,"https://upload.wikimedia.org/wikipedia/en/8/85/The_Chainsmokers_-_Call_You_Mine.png");
 INSERT INTO Song (Name,Genre,SongLen,CoverArt) VALUES("Cross Me (feat. Chance the Rapper & PnB Rock)","pop",206,"https://upload.wikimedia.org/wikipedia/en/4/4d/Ed_Sheeran_-_Cross_Me.png");
+INSERT INTO Song (Name,Genre,SongLen,CoverArt) VALUES("Baby Shark","Hip Hop",106,"https://www.recordoftheday.com/mediaLibrary/records/2018-10-03.jpg");
