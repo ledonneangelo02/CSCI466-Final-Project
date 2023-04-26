@@ -58,9 +58,10 @@ CREATE TABLE KaraokeFile
 
 CREATE TABLE Queue
 (
-	ID     INT(3)  PRIMARY KEY AUTO_INCREMENT,
-	IsPaid CHAR(1) NOT NULL  DEFAULT 'N',
-	Status INT(1)  NOT NULL  DEFAULT 0
+	ID          INT(3)            PRIMARY KEY AUTO_INCREMENT,
+	IsPaid      CHAR(1)           NOT NULL  DEFAULT 'N',
+	AmountPaid  DECIMAL(10,5)     DEFAULT 0,
+	Status      INT(1)            NOT NULL  DEFAULT 0
 );
 
 
