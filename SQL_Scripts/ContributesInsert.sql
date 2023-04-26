@@ -161,8 +161,8 @@ INSERT INTO Contributes (SongID,RoleID,ArtistID,DateAndTime) VALUES ('5','2','27
 INSERT INTO Contributes (SongID,RoleID,ArtistID,DateAndTime) VALUES ('5','4','27','2022-05-03 12:49:00');
 
 #Chance The Rapper
-INSERT INTO Contributes (SongID,RoleID,ArtistID,DateAndTime) VALUES ('32','2','28','2022-05-03 12:49:00');
-INSERT INTO Contributes (SongID,RoleID,ArtistID,DateAndTime) VALUES ('32','4','28','2022-05-03 12:49:00');
+INSERT INTO Contributes (SongID,RoleID,ArtistID,DateAndTime) VALUES ('32','2','28','2005-05-03 16:49:00');
+INSERT INTO Contributes (SongID,RoleID,ArtistID,DateAndTime) VALUES ('32','4','28','2005-05-03 16:49:00');
 
 #Macklemore
 INSERT INTO Contributes (SongID,RoleID,ArtistID,DateAndTime) VALUES ('24','2','29','2022-05-03 12:49:00');
@@ -179,6 +179,10 @@ INSERT INTO Contributes (SongID,RoleID,ArtistID,DateAndTime) VALUES ('32','4','3
 #J Cole
 INSERT INTO Contributes (SongID,RoleID,ArtistID,DateAndTime) VALUES ('22','2','32','2022-05-03 12:49:00');
 INSERT INTO Contributes (SongID,RoleID,ArtistID,DateAndTime) VALUES ('22','4','32','2022-05-03 12:49:00');
+
+#Pinkfong
+INSERT INTO Contributes (SongID,RoleID,ArtistID,DateAndTime) VALUES ('33','1','33','2018-10-01 23:54:00');
+INSERT INTO Contributes (SongID,RoleID,ArtistID,DateAndTime) VALUES ('33','4','33','2018-10-01 23:54:00');
 
 
 
