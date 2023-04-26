@@ -49,49 +49,46 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
 		crossorigin="anonymous"></script>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
 
 	</head>
 	<body>
 
 		<?php include "components/navbar.php"; ?>
 
-		<!-- BEGIN Front-Page Carousel ------------------------------------- -->
-		<div id="carouselExample" class="carousel slide bg-dark-subtle" data-bs-ride="carousel"
-			style="background-image:url('assets/front_banner.jpg'); background-size:cover; background-position:center;">
+		<div id="carouselExample" class="carousel slide bg-dark-subtle" data-bs-ride="carousel">
 			<div class="carousel-inner">
 				<?php
-				$query 	= "SELECT * FROM Song";
-				$prp = $PDO->prepare($query);
-				$prp->execute();
-				$vals = $prp->fetchAll(PDO::FETCH_ASSOC);
+					$query 	= "SELECT * FROM Song";
+					$prp = $PDO->prepare($query);
+					$prp->execute();
+					$vals = $prp->fetchAll(PDO::FETCH_ASSOC);
 
-				$taglines = array("The Latest Picks", "The Hottest Hits", "From Your Favorite Artists", "Only at KMS Karaoke");
+					$taglines = array("The Latest Picks", "The Hottest Hits", "From Your Favorite Artists", "Only at KMS Karaoke");
 
-				$i = 0;
-				foreach ($vals as $row)
-				{
-					if ($i == 0)
+					$i = 0;
+					foreach ($vals as $row)
 					{
-						echo "<div class=\"carousel-item active\" data-bs-interval=\"3000\">";
+						if ($i == 0)
+						{
+							echo "<div class=\"carousel-item active\" data-bs-interval=\"3000\">";
+						}
+						else
+						{
+							echo "<div class=\"carousel-item\">";
+						}
+						echo "<img height=\"400px\" src=\"" . $row["CoverArt"] . "\" class=\"d-block\">";
+				?>
+						<div class="container carousel-caption d-none d-md-block">
+							<h1 class="text-light"><?php  $v = $i % 4; echo $taglines[$v]; ?></h1>
+							<h2 class="text-secondary-emphasis"><i><?php echo $row["Name"]; ?></i></h2>
+							<p class="text-secondary">Performed by: <?php echo $row["MainArtist"]; ?></p>
+						</div>
+				<?php
+						echo "</div>";
+						$i++;
 					}
-					else
-					{
-						echo "<div class=\"carousel-item\">";
-					}
-					echo "<img height=\"600px\" src=\"" . $row["CoverArt"] . "\" class=\"d-block\">";
-			?>
-					<div class="container carousel-caption d-none d-md-block">
-							<h1 class="text-light" style="text-shadow: 4px 3px 7px black;"><?php  $v = $i % 4; echo $taglines[$v]; ?></h1>
-							<h2 class="text-light" style="text-shadow: 4px 3px 7px black;"><i><?php echo $row["Name"]; ?></i></h2>
-					</div>
-			<?php
-					echo "</div>";
-					$i++;
-				}
-			?>
+				?>
 			</div>
-
 			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
 				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 				<span class="visually-hidden">Previous</span>
@@ -102,9 +99,8 @@
 			</button>
 			</div>
 		</div>
-		<!-- END Front-Page Carousel --------------------------------------- -->
 
-		<?php include "components/footer.php" ?>
+		<img src="assets/front_banner.jpg" style="width:100%; height:60vh; object-fit: cover;"/>
 
 	</body>
 </html>

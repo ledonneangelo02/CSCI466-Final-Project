@@ -1,45 +1,22 @@
 #!/bin/bash
-##########################################
-# CSCI 466  FINAL GROUP PROJECT  SEC: 02 #
-#					 #
-#     THIS IS A HELPER FUNCTION FOR SQL  #
-#  SCRIPT CREATION                       #
-#					 #
-#    By:    Angelo LeDonne z1920784      #
-#           Chris Dejong   z1836870      #
-#           Mark Southwood z058227       #
-#           Milad Jizan    z1943173      #
-##########################################
-
 
 
 #Make sure we have .sql files in our directory
-rm SongInsert.sql
-rm ArtistInsert.sql
-rm KFInsert.sql
-touch KFInsert.sql
 touch SongInsert.sql
 touch ArtistInsert.sql
 
 #insert a header into the ArtistInsert.sql File
-echo "########################################## 
-# CSCI 466  FINAL GROUP PROJECT  SEC: 02 #
-#                                        #
-#     THIS IS A HELPER FUNCTION FOR SQL  #
-#  SCRIPT CREATION                       #
-#                                        #
-#    By:    Angelo LeDonne z1920784      # 
-#           Chris Dejong   z1836870      #
-#           Mark Southwood z058227       #
-#           Milad Jizan    z1943173      #
-##########################################
-" >> ArtistInsert.sql
-
+echo "##############################"  >> ArtistInsert.sql
+echo "# This is a SQL Script that  #"  >> ArtistInsert.sql
+echo "# will insert data into our  #"  >> ArtistInsert.sql
+echo "# table.                     #"  >> ArtistInsert.sql
+echo "##############################"  >> ArtistInsert.sql
 
 #copy the header into the SongInsert.sql File
 cp ArtistInsert.sql SongInsert.sql
-cp ArtistInsert.sql KFInsert.sql
 
+
+CTR=0
 
 #Defining our data file where all the info is stored
 INPUT=songs.csv
@@ -49,21 +26,14 @@ IFS=','
 while read name MA gen len CA
 do
 
-	echo "INSERT INTO Song (Name,Genre,SongLen,CoverArt) VALUES(\"$name\",\"$gen\",$len,\"$CA\");" >> SongInsert.sql
-	echo "INSERT INTO Artist (Name) VALUES(\"$MA\");" >> ArtistInsert.sql
-	
+	echo "INSERT INTO Song (Name,MainArtist,Genre,SongLen,CoverArt) VALUES(\"$name\",\"$MA\",\"$gen\",$len,\"$CA\");" >> SongInsert.sql
+
+
+	echo "INSERT INTO Artist (FirstName) VALUES(\"$MA\");" >> ArtistInsert.sql
 
 done < $INPUT
 IFS=$OLDIFS
 
-
-filepath=$(pwd)
-fp=$filepath/KFLyricFiles
-
-for FILE in "$fp"/*.txt; do
-
-	echo "INSERT INTO KaraokeFile (File) VALUES (\"$FILE\");" >> KFInsert.sql
-done
 
 
 
