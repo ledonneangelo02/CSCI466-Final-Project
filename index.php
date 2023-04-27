@@ -58,7 +58,7 @@
 
 		<!-- BEGIN Front-Page Carousel ------------------------------------- -->
 		<div id="carouselExample" class="carousel slide bg-dark-subtle" data-bs-ride="carousel"
-			style="background-image:url('assets/front_banner.jpg'); background-size:cover; background-position:center;">
+			style="background-image:url('assets/front_banner.jpg'); background-size:cover; background-attachment: fixed; background-position:10% bottom;">
 			<div class="carousel-inner">
 				<?php
 				$query 	= "SELECT * FROM Song ORDER BY RAND()";
@@ -79,7 +79,7 @@
 					{
 						echo "<div class=\"carousel-item\">";
 					}
-					echo "<img height=\"600px\" src=\"" . $row["CoverArt"] . "\" class=\"d-block\">";
+					echo "<img height=\"700px\" src=\"" . $row["CoverArt"] . "\" class=\"d-block\">";
 			?>
 					<div class="container carousel-caption d-none d-md-block">
 							<h1 class="text-light" style="text-shadow: 4px 3px 7px black;"><?php  $v = $i % 4; echo $taglines[$v]; ?></h1>
