@@ -44,11 +44,11 @@
 	</head>
 	<body>
 
-		<?php 
-		include "components/navbar.php";
+		<?php include "components/navbar.php"; ?>
 		
+		<?php
 		//Testing Area
-		echo "<br><br><br><br>POST dump<br>";
+		echo "POST dump<br>";
 		var_dump($_POST);
 		?>
 		
@@ -83,16 +83,12 @@
 
     	<h2>Browse Songs</h2>
     	<div class="container-md">	
-		<?php
-		$result = $PDO->query("SELECT * FROM `Song`;");
-		displaySongs($PDO, $result);
-		?>
+			<?php
+			$result = $PDO->query("SELECT * FROM `Song`;");
+			displaySongs($PDO, $result);
+			?>
 		</div>
-		<div style="clear:both;">
-		</div>	
-
-		
-
+		<div style="clear:both;"></div>	
 
 		<?php include "components/footer.php" ?>
 	</body>
