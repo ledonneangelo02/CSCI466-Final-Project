@@ -36,6 +36,8 @@
 		echo "<p>" . "Connection failed: " . $results["res"] . "</p>";
 	}
 
+	include "functions.php";
+
 ?>
 
 <html data-bs-theme="dark">
@@ -58,10 +60,10 @@
 
 		<!-- BEGIN Front-Page Carousel ------------------------------------- -->
 		<div id="carouselExample" class="carousel slide bg-dark-subtle" data-bs-ride="carousel"
-			style="background-image:url('assets/front_banner.jpg'); background-size:cover; background-position:center;">
+			style="background-image:url('assets/front_banner.jpg'); background-size:cover; background-attachment: fixed; background-position:10% bottom;">
 			<div class="carousel-inner">
 				<?php
-				$query 	= "SELECT * FROM Song";
+				$query 	= "SELECT * FROM Song ORDER BY RAND()";
 				$prp = $PDO->prepare($query);
 				$prp->execute();
 				$vals = $prp->fetchAll(PDO::FETCH_ASSOC);
@@ -79,7 +81,7 @@
 					{
 						echo "<div class=\"carousel-item\">";
 					}
-					echo "<img height=\"600px\" src=\"" . $row["CoverArt"] . "\" class=\"d-block\">";
+					echo "<img height=\"640px\" src=\"" . $row["CoverArt"] . "\" class=\"d-block\">";
 			?>
 					<div class="container carousel-caption d-none d-md-block">
 							<h1 class="text-light" style="text-shadow: 4px 3px 7px black;"><?php  $v = $i % 4; echo $taglines[$v]; ?></h1>
@@ -103,6 +105,19 @@
 			</div>
 		</div>
 		<!-- END Front-Page Carousel --------------------------------------- -->
+
+		<div class="container-md">
+			<h1 class="m-3">What's Currently Playing</h1>
+		</div>	
+		<?php include "components/activeplayer.php"; ?>
+
+    	<div class="container-md">
+			<h1 class="m-3">Our Favorite Picks</h1>	
+			<?php
+			$result = $PDO->query("SELECT * FROM `Song` ORDER BY RAND() LIMIT 6;");
+			displaySongsFormless($PDO, $result);
+			?>
+		</div>
 
 		<?php include "components/footer.php" ?>
 
