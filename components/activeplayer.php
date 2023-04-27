@@ -29,6 +29,7 @@
 			$activeCovertArt = $vals[0]["CoverArt"];
 			$activeLength = $vals[0]["SongLen"];
 			$activeAmountPaid = $vals[0]["AmountPaid"];
+			$activeQueueType = $vals[0]["IsPaid"];
 			
         ?>
         <div class="container p-4">
@@ -42,7 +43,7 @@
 							Queued by: <?php echo $activeQueuePerson; ?><br/>
 							Karaoke ID: <?php echo $activeKaraokeID; ?><br/>
 							Queue ID: <?php echo $activeQueueID; ?><br/>
-							Queue Type: Free-Queue<br/>
+							Queue Type: <?php echo ($activeQueueType == "Y") ? "Priority Queue" : "Free-for-All Queue"; ?> <br/>
 							Payment: <i class="bi bi-currency-bitcoin"></i> <?php echo $activeAmountPaid; ?>
 							</p>
 						</div>
