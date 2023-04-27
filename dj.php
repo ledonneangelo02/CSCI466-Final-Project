@@ -62,6 +62,17 @@
             $FFAQueue = "SELECT * FROM Queue, Enqueues WHERE Enqueues.QueueID = Queue.ID AND Queue.Status = 0 AND Queue.IsPaid = 'N'";
         ?>
 
+		<div class="container-md">
+			<div class="row">
+				<div class="col">
+
+				</div>
+				<div class="col">
+
+				</div>
+			</div>
+		</div>
+
 		<?php include "components/footer.php" ?>
 
 	</body>

@@ -79,7 +79,7 @@
 					{
 						echo "<div class=\"carousel-item\">";
 					}
-					echo "<img height=\"700px\" src=\"" . $row["CoverArt"] . "\" class=\"d-block\">";
+					echo "<img height=\"640px\" src=\"" . $row["CoverArt"] . "\" class=\"d-block\">";
 			?>
 					<div class="container carousel-caption d-none d-md-block">
 							<h1 class="text-light" style="text-shadow: 4px 3px 7px black;"><?php  $v = $i % 4; echo $taglines[$v]; ?></h1>
