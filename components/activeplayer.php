@@ -29,6 +29,7 @@
 			$activeCovertArt = $vals[0]["CoverArt"];
 			$activeLength = $vals[0]["SongLen"];
 			$activeAmountPaid = $vals[0]["AmountPaid"];
+			$activeQueueType = $vals[0]["IsPaid"];
 			
         ?>
         <div class="container p-4">
@@ -42,7 +43,7 @@
 							Queued by: <?php echo $activeQueuePerson; ?><br/>
 							Karaoke ID: <?php echo $activeKaraokeID; ?><br/>
 							Queue ID: <?php echo $activeQueueID; ?><br/>
-							Queue Type: Free-Queue<br/>
+							Queue Type: <?php echo ($activeQueueType == "Y") ? "Priority Queue" : "Free-for-All Queue"; ?> <br/>
 							Payment: <i class="bi bi-currency-bitcoin"></i> <?php echo $activeAmountPaid; ?>
 							</p>
 						</div>
@@ -52,20 +53,24 @@
 					<script>
 						var i = 0;
 						var x = <?php echo $activeLength; ?>;
+						var s = true;
 
 						var interval = setInterval( increment, 100);
 						function increment(){
-							document.getElementById("ActivePlayer").style.width = ((i/x) * 100) + "%";
-							var dateA = new Date(0);
-							var dateB = new Date(0);
-							dateA.setSeconds(i); // specify value for SECONDS here
-							dateB.setSeconds(x); // specify value for SECONDS here
-							var timeStringA = dateA.toISOString().substring(14, 19);
-							var timeStringB = dateB.toISOString().substring(14, 19);
-							document.getElementById('ActiveTime').innerText = timeStringA + " / " + timeStringB;
-							if (i >= x)
-								clearInterval(interval);
-							i += .1;
+							if (s == true)
+							{
+								document.getElementById("ActivePlayer").style.width = ((i/x) * 100) + "%";
+								var dateA = new Date(0);
+								var dateB = new Date(0);
+								dateA.setSeconds(i); // specify value for SECONDS here
+								dateB.setSeconds(x); // specify value for SECONDS here
+								var timeStringA = dateA.toISOString().substring(14, 19);
+								var timeStringB = dateB.toISOString().substring(14, 19);
+								document.getElementById('ActiveTime').innerText = timeStringA + " / " + timeStringB;
+								if (i >= x)
+									clearInterval(interval);
+								i += .1;
+							}
 						}
 					</script>
 					<div>
@@ -75,9 +80,14 @@
 						<div id="ActivePlayer" class="progress-bar" style="width: 0%"></div>
 					</div><br/>
 					<button type="button" class="btn btn-light"><i class="bi bi-rewind"></i></button>
-					<button type="button" class="btn btn-light"><i class="bi bi-pause-btn"></i></button>
+					<button id="ActivePause" type="button" class="btn btn-light"><i class="bi bi-pause-btn"></i></button>
 					<button type="button" class="btn btn-light"><i class="bi bi-fast-forward"></i></button>
 					</div><br/>
+					<script>
+						document.getElementById("ActivePause").addEventListener('click',function () {
+							s = !s;
+						});
+					</script>
 					<?php
 						foreach($artistVocalized as $ActiveArtist)
 						{
