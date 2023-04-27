@@ -52,7 +52,7 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
 
 	</head>
-	<body>
+	<body style="padding-top: 70px;">
 
 		<?php include "components/navbar.php"; ?>
 
@@ -103,6 +103,8 @@
 			</div>
 		</div>
 		<!-- END Front-Page Carousel --------------------------------------- -->
+
+		<?php include "components/activeplayer.php"; ?>
 
 		<?php include "components/footer.php" ?>
 
