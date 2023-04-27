@@ -61,7 +61,7 @@
 			style="background-image:url('assets/front_banner.jpg'); background-size:cover; background-position:center;">
 			<div class="carousel-inner">
 				<?php
-				$query 	= "SELECT * FROM Song";
+				$query 	= "SELECT * FROM Song ORDER BY RAND()";
 				$prp = $PDO->prepare($query);
 				$prp->execute();
 				$vals = $prp->fetchAll(PDO::FETCH_ASSOC);

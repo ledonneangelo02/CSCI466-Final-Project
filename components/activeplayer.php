@@ -28,6 +28,7 @@
 			$activeQueueID = $vals[0]["QueueID"];
 			$activeCovertArt = $vals[0]["CoverArt"];
 			$activeLength = $vals[0]["SongLen"];
+			$activeAmountPaid = $vals[0]["AmountPaid"];
 			
         ?>
         <div class="container p-4">
@@ -37,10 +38,13 @@
 						<img src="<?php echo $activeCovertArt; ?>" class="card-img-top" >
 						<div class="card-body">
 							<h5 class="card-title"><?php echo $activeTitle; ?></h5>
-							<p class="card-text">Queued by: <?php echo $activeQueuePerson; ?></p>
-							<p class="card-text">Karaoke ID: <?php echo $activeKaraokeID; ?></p>
-							<p class="card-text">Queue ID: <?php echo $activeQueueID; ?></p>
-							<p class="card-text">Queue Type: Free-Queue</p>
+							<p class="card-text">
+							Queued by: <?php echo $activeQueuePerson; ?><br/>
+							Karaoke ID: <?php echo $activeKaraokeID; ?><br/>
+							Queue ID: <?php echo $activeQueueID; ?><br/>
+							Queue Type: Free-Queue<br/>
+							Payment: <i class="bi bi-currency-bitcoin"></i> <?php echo $activeAmountPaid; ?>
+							</p>
 						</div>
 					</div>
 				</div>
