@@ -32,8 +32,8 @@
         ?>
         <div class="container p-4">
 			<div class="row">
-				<div class="col-4">
-					<div class="card" style="width: 18rem;">
+				<div class="col-sm-4">
+					<div class="card">
 						<img src="<?php echo $activeCovertArt; ?>" class="card-img-top" >
 						<div class="card-body">
 							<h5 class="card-title"><?php echo $activeTitle; ?></h5>
@@ -44,7 +44,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-8">
+				<div class="col-sm-8">
 					<script>
 						var i = 0;
 						var x = <?php echo $activeLength; ?>;
