@@ -65,7 +65,25 @@
 		<div class="container-md">
 			<div class="row">
 				<div class="col">
-
+					<table class="table">
+					<thead>
+						<tr rowspan='3'>
+						 <th>Paid Queue</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php 
+						   $prepared = $PDO->prepare($PriQueue);
+	    				   	   $succ = $prepared->execute();
+						   while($row = $prepared->fetch(PDO::FETCH_BOTH)){
+							   echo"<tr>";
+							   echo "<td>$row[2]</td>";
+							   echo "<td>$row[3]</td>";
+				   			   echo"</tr>";			   
+						   }
+						?>
+					</tbody>
+					<table>
 					
 				</div>
 				<div class="col">
