@@ -36,6 +36,8 @@
 		echo "<p>" . "Connection failed: " . $results["res"] . "</p>";
 	}
 
+	include "functions.php";
+
 ?>
 
 <html data-bs-theme="dark">
@@ -104,7 +106,18 @@
 		</div>
 		<!-- END Front-Page Carousel --------------------------------------- -->
 
+		<div class="container-md">
+			<h1 class="m-3">What's Currently Playing</h1>
+		</div>	
 		<?php include "components/activeplayer.php"; ?>
+
+    	<div class="container-md">
+			<h1 class="m-3">Our Favorite Picks</h1>	
+			<?php
+			$result = $PDO->query("SELECT * FROM `Song` ORDER BY RAND() LIMIT 6;");
+			displaySongsFormless($PDO, $result);
+			?>
+		</div>
 
 		<?php include "components/footer.php" ?>
 

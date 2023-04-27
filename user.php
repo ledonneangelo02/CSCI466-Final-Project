@@ -82,7 +82,7 @@
 	
 
     	<h2>Browse Songs</h2>
-    	<div class="container-md">	
+    	<div class="container-md">
 			<?php
 			$result = $PDO->query("SELECT * FROM `Song`;");
 			displaySongs($PDO, $result);

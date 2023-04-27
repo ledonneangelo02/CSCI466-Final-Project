@@ -18,7 +18,7 @@ else
 function displaySongs($PDO, $result) {
 	?>
 
-	<div class="card-deck container-md m-3">
+	<div class="card-deck m-3">
 
 	<?php
 		$count = 0;
@@ -70,6 +70,51 @@ function displaySongs($PDO, $result) {
 							<br>
 							<input type="hidden" name="ID" value="<?php echo $songID; ?>">
 							<input type="submit" name="freeQ" class="btn btn-primary" value="Free Queue">&nbsp;&nbsp;<input type="submit" name="paidQ" class="btn btn-success" value="Paid Queue">
+						</form>
+					</div>
+				</div>
+				</div>
+		
+		<?php
+			if ($count % 3 == 2)
+			{
+				echo "</div>";
+			}
+			$count++;
+		}
+		?>
+
+	</div>
+	<?php
+}
+
+
+
+function displaySongsFormless($PDO, $result) {
+	?>
+
+	<div class="card-deck m-3">
+
+	<?php
+		$count = 0;
+		while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+			$songID = $row['ID'];
+			$mainArtist = getSongArtist($PDO, $songID);
+
+			if ($count % 3 == 0)
+			{
+				echo "<div class='row'>";
+			}
+			?>
+		
+				<div class="col">
+				<div class="card m-2" style="min-height:560px;">
+					<img src="<?php echo $row['CoverArt']; ?>" class="card-img-top" alt="<?php echo $row['MainArtist']; ?>">
+					
+					<div class="card-body">
+						<form action="" method="POST">
+							<h5 class="card-title" style=""><?php echo $row['Name']; ?></h5>
+							<p class="card-text">Performed by: <?php echo $mainArtist; ?></p>
 						</form>
 					</div>
 				</div>
