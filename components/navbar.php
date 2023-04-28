@@ -8,7 +8,7 @@
 			aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse container-fluid clearfix" id="navbarNav">
+		<div class="collapse navbar-collapse container-fluid d-flex" id="navbarNav">
 			<ul class="navbar-nav">
 				<li class="nav-item">
 				<a class="nav-link active" aria-current="page" href="./">Home</a>
@@ -19,13 +19,18 @@
 				<li class="nav-item">
 				<a class="nav-link active" aria-current="page" href="./dj.php">DJ</a>
 				</li>
+				<li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="./signUp.php">User Signup</a>
+				</li>
 			</ul>
-			<div class="container-fluid clearfix">
-			<form class="d-flex my-auto float-end" action="" method="POST">
-				<input class="form-control mr-sm-2 me-2" type="search" placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-			</form>
-			</div>
+			<ul class="navbar-nav me-auto">
+				<li class="nav-item">
+					<form class="d-flex my-auto" action="" method="POST">
+						<input class="form-control mr-sm-2 me-2" type="search" placeholder="Search" aria-label="Search">
+						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+					</form>
+				</li>
+			</ul>
 		</div>
 	</div>
 </nav>

@@ -58,8 +58,31 @@
 		<?php include "components/activeplayer.php"; ?>
 
         <?php
-            $PriQueue = "SELECT * FROM Queue, Enqueues WHERE Enqueues.QueueID = Queue.ID AND Queue.Status = 0 AND Queue.IsPaid = 'Y'";
-            $FFAQueue = "SELECT * FROM Queue, Enqueues WHERE Enqueues.QueueID = Queue.ID AND Queue.Status = 0 AND Queue.IsPaid = 'N'";
+			$PriorityQueue = "SELECT Song.Name 'SongName', Song.SongLen, Song.CoverArt,
+				Artist.Name 'ArtistName',
+				Person.FirstName 'PersonFirstName', Person.LastName 'PersonLastName',
+				AssociatedWith.KarFileID, Enqueues.QueueID 'QueueID', Queue.IsPaid,
+				Queue.AmountPaid
+				FROM Enqueues, Queue, Person, AssociatedWith, Artist, Song WHERE
+				Enqueues.KarFileID = AssociatedWith.KarFileID
+				AND Enqueues.PersonID = Person.ID
+				AND Enqueues.QueueID = Queue.ID
+				AND AssociatedWith.SongID = Song.ID
+				AND AssociatedWith.ArtistID = Artist.ID
+				AND Queue.Status = 0 AND Queue.IsPaid = 'Y' GROUP BY QueueID";
+
+			$FFAQueue = "SELECT Song.Name 'SongName', Song.SongLen, Song.CoverArt,
+				Artist.Name 'ArtistName',
+				Person.FirstName 'PersonFirstName', Person.LastName 'PersonLastName',
+				AssociatedWith.KarFileID, Enqueues.QueueID 'QueueID', Queue.IsPaid,
+				Queue.AmountPaid
+				FROM Enqueues, Queue, Person, AssociatedWith, Artist, Song WHERE
+				Enqueues.KarFileID = AssociatedWith.KarFileID
+				AND Enqueues.PersonID = Person.ID
+				AND Enqueues.QueueID = Queue.ID
+				AND AssociatedWith.SongID = Song.ID
+				AND AssociatedWith.ArtistID = Artist.ID
+				AND Queue.Status = 0 AND Queue.IsPaid = 'N' GROUP BY QueueID";
         ?>
 
 		<div class="container-md">
