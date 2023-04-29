@@ -57,83 +57,75 @@
 		<?php include "components/navbar.php"; ?>
 		<?php include "components/activeplayer.php"; ?>
 
-        <?php
+		<?php
 		$PaidQueueFinderBoi = "SELECT Queue.AmountPaid, Person.FirstName 'Singer', Song.Name 'Song Title', Artist.Name 'Main Artist', KaraokeFile.ID 'KarFileID', Queue.ID FROM Song, Queue, Enqueues, Artist,AssociatedWith, Contributes, Person, Role, KaraokeFile WHERE Song.ID = Contributes.SongID AND Song.ID = AssociatedWith.SongID AND Person.ID = Enqueues.PersonID AND KaraokeFile.ID = AssociatedWith.KarFileID AND KaraokeFile.ID = Enqueues.KarFileID AND Queue.ID = Enqueues.QueueID AND Artist.ID = AssociatedWith.ArtistID AND Artist.ID = Contributes.ArtistID AND Queue.IsPaid = 'Y' GROUP BY Queue.ID;";
 		$FreeQueueFinderBoi = "SELECT Person.FirstName 'Singer', Song.Name 'Song Title', Artist.Name 'Main Artist', KaraokeFile.ID 'KarFileID', Queue.ID FROM Song, Queue, Enqueues, Artist,AssociatedWith, Contributes, Person, Role, KaraokeFile WHERE Song.ID = Contributes.SongID AND Song.ID = AssociatedWith.SongID AND Person.ID = Enqueues.PersonID AND KaraokeFile.ID = AssociatedWith.KarFileID AND KaraokeFile.ID = Enqueues.KarFileID AND Queue.ID = Enqueues.QueueID AND Artist.ID = AssociatedWith.ArtistID AND Artist.ID = Contributes.ArtistID AND Queue.IsPaid = 'N' GROUP BY Queue.ID;";
-
-        ?>
+		?>
 
 		<div class="container-md">
-			<div class-'row'>
-				
-			</div>
-			<div class="row">
+				<div class="row">
+					<div class="col">	
+						<p class='fs-1'><b>Paid Queue</b></p>
+						<table class="table">
+							<thead>
+								<tr>
+								 <th>&#8383 Bitcoin Paid</th>
+								 <th>Singer</th>
+								 <th>Song Title</th>
+								 <th>Main Artist</th>
+								 <th>KarFileID</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php 
+								   $prepared = $PDO->prepare($PaidQueueFinderBoi);
+										  $succ = $prepared->execute();
+								   while($row = $prepared->fetch(PDO::FETCH_BOTH)){
+									   
+									   echo "<tr>";
+									   echo "<td>$row[0]</td>";
+									   echo "<td>$row[1]</td>";
+									   echo "<td>$row[2]</td>";
+									   echo "<td>$row[3]</td>";
+									   echo "<td>$row[4]</td>";
+										  echo "</tr>";			   
+								   }
+		
+								?>
+							</tbody>
+						</table>
+					</div>
 
-				<p class='fs-1'><b>Paid Queue</b></p>
-				<div class="col">	
-					
-					<table class="table">
-					<thead>
-						<tr>
-						 <th>&#8383 Bitcoin Paid</th>
-						 <th>Singer</th>
-						 <th>Song Title</th>
-						 <th>Main Artist</th>
-						 <th>KarFileID</th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php 
-						   $prepared = $PDO->prepare($PaidQueueFinderBoi);
-	    				   	   $succ = $prepared->execute();
-						   while($row = $prepared->fetch(PDO::FETCH_BOTH)){
-							   
-							   echo "<tr>";
-							   echo "<td>$row[0]</td>";
-							   echo "<td>$row[1]</td>";
-							   echo "<td>$row[2]</td>";
-							   echo "<td>$row[3]</td>";
-							   echo "<td>$row[4]</td>";
-				   			   echo "</tr>";			   
-						   }
-
-						?>
-					</tbody>
-					<table>
-					
+					<div class="col">
+						<p class='fs-1'><b>Free Queue</b></p>
+						<table class="table">
+						<thead>
+							<tr>
+							 <th>Singer</th>
+							 <th>Song Title</th>
+							 <th>Main Artist</th>
+							 <th>KarFileID</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php 
+							   $prepared = $PDO->prepare($FreeQueueFinderBoi);
+									  $succ = $prepared->execute();
+							   while($row = $prepared->fetch(PDO::FETCH_BOTH)){
+								   echo"<tr>";
+								   echo "<td>$row[0]</td>";
+								   echo "<td>$row[1]</td>";
+								   echo "<td>$row[2]</td>";
+								   echo "<td>$row[3]</td>";
+									  echo"</tr>";			   
+							   }
+							?>
+						</tbody>
+						</table>
+					</div>
+	
+					</div>
 				</div>
-				<p class='fs-1'><b>Free Queue</b></p>
-				<div class="col">
-					
-					<table class="table">
-					<thead>
-						<tr>
-						 <th>Singer</th>
-						 <th>Song Title</th>
-						 <th>Main Artist</th>
-						 <th>KarFileID</th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php 
-						   $prepared = $PDO->prepare($FreeQueueFinderBoi);
-	    				   	   $succ = $prepared->execute();
-						   while($row = $prepared->fetch(PDO::FETCH_BOTH)){
-							   echo"<tr>";
-							   echo "<td>$row[0]</td>";
-							   echo "<td>$row[1]</td>";
-							   echo "<td>$row[2]</td>";
-							   echo "<td>$row[3]</td>";
-				   			   echo"</tr>";			   
-						   }
-						?>
-					</tbody>
-					<table>
-					
-				</div>
-
-				</div>
-			</div>
 		</div>
 
 		<?php include "components/footer.php" ?>
