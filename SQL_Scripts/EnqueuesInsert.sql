@@ -20,7 +20,7 @@ INSERT INTO Queue    (IsPaid, Status)               VALUES ('N','0');
 INSERT INTO Enqueues (KarFileID, PersonID, QueueID) VALUES ('44','3','3');
 
 INSERT INTO Queue    (IsPaid, Status, AmountPaid)   VALUES ('Y','0','0.87');        
-INSERT INTO Enqueues (KarFileID, PersonID, QueueID) VALUES ('23','4','4');
+INSERT INTO Enqueues (KarFileID, PersonID, QueueID) VALUES ('48','4','4');
 
 INSERT INTO Queue    (IsPaid, Status, AmountPaid)   VALUES ('Y','0','.45');        
 INSERT INTO Enqueues (KarFileID, PersonID, QueueID) VALUES ('8','5','5');
@@ -55,8 +55,8 @@ INSERT INTO Enqueues (KarFileID, PersonID, QueueID) VALUES ('37','4','14');
 INSERT INTO Queue    (IsPaid, Status, AmountPaid)   VALUES ('Y','0','2.22');        
 INSERT INTO Enqueues (KarFileID, PersonID, QueueID) VALUES ('50','3','15');
 
-INSERT INTO Queue    (IsPaid, Status, AmountPaid)   VALUES ('Y','0','90.98');        
-INSERT INTO Enqueues (KarFileID, PersonID, QueueID) VALUES ('59','2','16');
+INSERT INTO Queue    (IsPaid, Status)               VALUES ('N','0');        
+INSERT INTO Enqueues (KarFileID, PersonID, QueueID) VALUES ('21','2','16');
 
 INSERT INTO Queue    (IsPaid, Status)               VALUES ('N','0');        
 INSERT INTO Enqueues (KarFileID, PersonID, QueueID) VALUES ('61','1','17');
