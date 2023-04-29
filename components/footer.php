@@ -1,6 +1,6 @@
 <footer>
 
-<div class="container-fluid p-4" style="min-height:400px; background-color:#292929;">
+<div class="container-fluid p-4 bg-dark-subtle" style="min-height:400px;">
 	<div class="container-md text-center">
 		<div class="row h2">
 			<div class="col"><a href="./"><i class="bi bi-facebook"> </i></a></div>
@@ -35,7 +35,7 @@
 		</div>
 	</div>
 </div>
-<div class="container-fluid text-center p-4" style="background-color:#191919">
+<div class="container-fluid text-center p-4 bg-black">
 	<div class="container-md">
 		<p>
 		<i class="bi bi-c-circle"></i> 2023 Copyright: <a class="text-reset" href=".">kmskaraoke.com</a>
