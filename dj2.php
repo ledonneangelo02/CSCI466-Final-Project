@@ -37,7 +37,7 @@
 	}
 
 ?>
-
+<!doctype html>
 <html data-bs-theme="dark">
 	<head>
 		<title>CSCI 466 Group Project</title>
@@ -58,74 +58,82 @@
 		<?php include "components/activeplayer.php"; ?>
 
 		<?php
-		$PaidQueueFinderBoi = "SELECT Queue.AmountPaid, Person.FirstName 'Singer', Song.Name 'Song Title', Artist.Name 'Main Artist', KaraokeFile.ID 'KarFileID', Queue.ID FROM Song, Queue, Enqueues, Artist,AssociatedWith, Contributes, Person, Role, KaraokeFile WHERE Song.ID = Contributes.SongID AND Song.ID = AssociatedWith.SongID AND Person.ID = Enqueues.PersonID AND KaraokeFile.ID = AssociatedWith.KarFileID AND KaraokeFile.ID = Enqueues.KarFileID AND Queue.ID = Enqueues.QueueID AND Artist.ID = AssociatedWith.ArtistID AND Artist.ID = Contributes.ArtistID AND Queue.IsPaid = 'Y' GROUP BY Queue.ID;";
-		$FreeQueueFinderBoi = "SELECT Person.FirstName 'Singer', Song.Name 'Song Title', Artist.Name 'Main Artist', KaraokeFile.ID 'KarFileID', Queue.ID FROM Song, Queue, Enqueues, Artist,AssociatedWith, Contributes, Person, Role, KaraokeFile WHERE Song.ID = Contributes.SongID AND Song.ID = AssociatedWith.SongID AND Person.ID = Enqueues.PersonID AND KaraokeFile.ID = AssociatedWith.KarFileID AND KaraokeFile.ID = Enqueues.KarFileID AND Queue.ID = Enqueues.QueueID AND Artist.ID = AssociatedWith.ArtistID AND Artist.ID = Contributes.ArtistID AND Queue.IsPaid = 'N' GROUP BY Queue.ID;";
+		$PaidQueueFinderBoi = "SELECT Queue.AmountPaid, Person.FirstName 'Singer', Song.Name 'Song Title', Artist.Name 'Main Artist', KaraokeFile.ID 'KarFileID', Queue.ID, Song.CoverArt FROM Song, Queue, Enqueues, Artist,AssociatedWith, Contributes, Person, Role, KaraokeFile WHERE Song.ID = Contributes.SongID AND Song.ID = AssociatedWith.SongID AND Person.ID = Enqueues.PersonID AND KaraokeFile.ID = AssociatedWith.KarFileID AND KaraokeFile.ID = Enqueues.KarFileID AND Queue.ID = Enqueues.QueueID AND Artist.ID = AssociatedWith.ArtistID AND Artist.ID = Contributes.ArtistID AND Queue.IsPaid = 'Y' GROUP BY Queue.ID;";
+		$FreeQueueFinderBoi = "SELECT Person.FirstName 'Singer', Song.Name 'Song Title', Artist.Name 'Main Artist', KaraokeFile.ID 'KarFileID', Queue.ID, Song.CoverArt FROM Song, Queue, Enqueues, Artist,AssociatedWith, Contributes, Person, Role, KaraokeFile WHERE Song.ID = Contributes.SongID AND Song.ID = AssociatedWith.SongID AND Person.ID = Enqueues.PersonID AND KaraokeFile.ID = AssociatedWith.KarFileID AND KaraokeFile.ID = Enqueues.KarFileID AND Queue.ID = Enqueues.QueueID AND Artist.ID = AssociatedWith.ArtistID AND Artist.ID = Contributes.ArtistID AND Queue.IsPaid = 'N' GROUP BY Queue.ID;";
 		?>
 
 		<div class="container-md">
 				<div class="row">
-					<div class="col">	
-						<p class='fs-1'><b>Paid Queue</b></p>
-						<table class="table">
-							<thead>
-								<tr>
-								 <th>&#8383 Paid</th>
-								 <th>Singer</th>
-								 <th>Song Title</th>
-								 <th>Main Artist</th>
-								 <th>KarFileID</th>
-								</tr>
-							</thead>
-							<tbody>
-								<?php 
-								   $prepared = $PDO->prepare($PaidQueueFinderBoi);
-										  $succ = $prepared->execute();
-								   while($row = $prepared->fetch(PDO::FETCH_BOTH)){
-									   
-									   echo "<tr>";
-									   echo "<td>$row[0]</td>";
-									   echo "<td>$row[1]</td>";
-									   echo "<td>$row[2]</td>";
-									   echo "<td>$row[3]</td>";
-									   echo "<td>$row[4]</td>";
-										  echo "</tr>";			   
-								   }
-		
-								?>
-							</tbody>
-						</table>
-					</div>
 
-					<div class="col">
-						<p class='fs-1'><b>Free Queue</b></p>
-						<table class="table">
-						<thead>
-							<tr>
-							 <th>Singer</th>
-							 <th>Song Title</th>
-							 <th>Main Artist</th>
-							 <th>KarFileID</th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php 
-							   $prepared = $PDO->prepare($FreeQueueFinderBoi);
-									  $succ = $prepared->execute();
-							   while($row = $prepared->fetch(PDO::FETCH_BOTH)){
-								   echo"<tr>";
-								   echo "<td>$row[0]</td>";
-								   echo "<td>$row[1]</td>";
-								   echo "<td>$row[2]</td>";
-								   echo "<td>$row[3]</td>";
-									  echo"</tr>";			   
-							   }
-							?>
-						</tbody>
-						</table>
-					</div>
-	
-					</div>
-				</div>
+			<!-- Priority Queue Table -->
+			<h2 class="display-3">Priority Paid Queue</h2>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>&nbsp;</th>
+						<th><i class="bi bi-currency-bitcoin"></i> Price</th>
+						<th>Singer</th>
+						<th>Song</th>
+						<th>Q-ID</th>
+						<th>K-ID</th>
+					</tr>
+				</thead>
+				<tbody>
+					   <?php 
+						   include "functions.php";
+
+					   	   $prepared = $PDO->prepare($PaidQueueFinderBoi);
+							  $succ = $prepared->execute();
+						   while($row = $prepared->fetch(PDO::FETCH_BOTH)){
+						   
+							echo "<tr>";
+						   	echo "<td><img src=\"".$row["CoverArt"]."\" height=100px/></td>";
+						   	echo "<td>$row[0]</td>";
+						   	echo "<td>$row[1]</td>";
+						   	echo "<td>$row[2]</br><i>Artist: $row[3]</i></td>";
+						   	echo "<td>".$row["ID"]."</td>";
+						   	echo "<td>$row[4]</td>";
+							echo "</tr>";
+							
+						   }
+					?>
+				</tbody>
+			</table>
+			
+			<!-- End Priority Queue Table -->
+		</div>
+
+
+		<div class="container-md">				
+			<!-- Free Queue Table -->
+			<h2 class="display-3">Free Queue</h2>
+			<table class="table">
+			<thead>
+				<tr>
+				 <th>&nbsp;</th>
+				 <th>Singer</th>
+				 <th>Song</th>
+				 <th>Q-ID</th>
+				 <th>K-ID</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php 
+				   $prepared = $PDO->prepare($FreeQueueFinderBoi);
+						  $succ = $prepared->execute();
+				   while($row = $prepared->fetch(PDO::FETCH_BOTH)){
+					   echo"<tr>";
+					   echo "<td><img src=\"".$row["CoverArt"]."\" height=100px/></td>";
+					   echo "<td>$row[0]</td>";
+					   echo "<td>$row[1]</br><i>Artist: $row[2]</i></td>";
+					   echo "<td>".$row["ID"]."</td>";
+					   echo "<td>$row[3]</td>";
+						  echo"</tr>";			   
+				   }
+				?>
+			</tbody>
+			</table>
+			<!-- End Free Queue Table -->
 		</div>
 
 		<?php include "components/footer.php" ?>
