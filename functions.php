@@ -132,4 +132,5 @@ function displaySongsFormless($PDO, $result) {
 	</div>
 	<?php
 }
+
 ?>

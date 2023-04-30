@@ -58,8 +58,8 @@
 		<?php include "components/activeplayer.php"; ?>
 
 		<?php
-		$PaidQueueFinderBoi = "SELECT Queue.AmountPaid, Person.FirstName 'Singer', Song.Name 'Song Title', Artist.Name 'Main Artist', KaraokeFile.ID 'KarFileID', Queue.ID, Song.CoverArt FROM Song, Queue, Enqueues, Artist,AssociatedWith, Contributes, Person, Role, KaraokeFile WHERE Song.ID = Contributes.SongID AND Song.ID = AssociatedWith.SongID AND Person.ID = Enqueues.PersonID AND KaraokeFile.ID = AssociatedWith.KarFileID AND KaraokeFile.ID = Enqueues.KarFileID AND Queue.ID = Enqueues.QueueID AND Artist.ID = AssociatedWith.ArtistID AND Artist.ID = Contributes.ArtistID AND Queue.IsPaid = 'Y' GROUP BY Queue.ID;";
-		$FreeQueueFinderBoi = "SELECT Person.FirstName 'Singer', Song.Name 'Song Title', Artist.Name 'Main Artist', KaraokeFile.ID 'KarFileID', Queue.ID, Song.CoverArt FROM Song, Queue, Enqueues, Artist,AssociatedWith, Contributes, Person, Role, KaraokeFile WHERE Song.ID = Contributes.SongID AND Song.ID = AssociatedWith.SongID AND Person.ID = Enqueues.PersonID AND KaraokeFile.ID = AssociatedWith.KarFileID AND KaraokeFile.ID = Enqueues.KarFileID AND Queue.ID = Enqueues.QueueID AND Artist.ID = AssociatedWith.ArtistID AND Artist.ID = Contributes.ArtistID AND Queue.IsPaid = 'N' GROUP BY Queue.ID;";
+		$PaidQueueFinderBoi = "SELECT Queue.AmountPaid, Person.FirstName 'Singer', Song.Name 'Song Title', Artist.Name 'Main Artist', KaraokeFile.ID 'KarFileID', Queue.ID, Song.CoverArt FROM Song, Queue, Enqueues, Artist,AssociatedWith, Contributes, Person, Role, KaraokeFile WHERE Song.ID = Contributes.SongID AND Song.ID = AssociatedWith.SongID AND Person.ID = Enqueues.PersonID AND KaraokeFile.ID = AssociatedWith.KarFileID AND KaraokeFile.ID = Enqueues.KarFileID AND Queue.ID = Enqueues.QueueID AND Artist.ID = AssociatedWith.ArtistID AND Artist.ID = Contributes.ArtistID AND Queue.IsPaid = 'Y' AND Queue.Status = '0' GROUP BY Queue.ID;";
+		$FreeQueueFinderBoi = "SELECT Person.FirstName 'Singer', Song.Name 'Song Title', Artist.Name 'Main Artist', KaraokeFile.ID 'KarFileID', Queue.ID, Song.CoverArt FROM Song, Queue, Enqueues, Artist,AssociatedWith, Contributes, Person, Role, KaraokeFile WHERE Song.ID = Contributes.SongID AND Song.ID = AssociatedWith.SongID AND Person.ID = Enqueues.PersonID AND KaraokeFile.ID = AssociatedWith.KarFileID AND KaraokeFile.ID = Enqueues.KarFileID AND Queue.ID = Enqueues.QueueID AND Artist.ID = AssociatedWith.ArtistID AND Artist.ID = Contributes.ArtistID AND Queue.IsPaid = 'N' AND Queue.Status = '0' GROUP BY Queue.ID;";
 		?>
 
 		<div class="container-md">
@@ -80,13 +80,12 @@
 				</thead>
 				<tbody>
 					   <?php 
-						   include "functions.php";
 
 					   	   $prepared = $PDO->prepare($PaidQueueFinderBoi);
 							  $succ = $prepared->execute();
 						   while($row = $prepared->fetch(PDO::FETCH_BOTH)){
 						   
-							echo "<tr>";
+							echo "<tr class='clickable-row' data-id='$row[5]'>";
 						   	echo "<td><img src=\"".$row["CoverArt"]."\" height=100px/></td>";
 						   	echo "<td>$row[0]</td>";
 						   	echo "<td>$row[1]</td>";
@@ -122,8 +121,9 @@
 				   $prepared = $PDO->prepare($FreeQueueFinderBoi);
 						  $succ = $prepared->execute();
 				   while($row = $prepared->fetch(PDO::FETCH_BOTH)){
-					   echo"<tr>";
-					   echo "<td><img src=\"".$row["CoverArt"]."\" height=100px/></td>";
+					   
+					   echo "<tr class='clickable-row' data-id='$row[4]'>";
+	  				   echo "<td><img src=\"".$row["CoverArt"]."\" height=100px/></td>";
 					   echo "<td>$row[0]</td>";
 					   echo "<td>$row[1]</br><i>Artist: $row[2]</i></td>";
 					   echo "<td>".$row["ID"]."</td>";
@@ -133,6 +133,32 @@
 				?>
 			</tbody>
 			</table>
+
+				<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  				<script>
+    				$(document).ready(function() {
+
+
+					$('tr.clickable-row').click(function() {
+        				var QueID = $(this).data('id');
+        
+       				 $.ajax({
+          				type: 'POST',
+          				url: 'SongSwitcher9000.php',
+          				data: { 'ID': QueID },
+					success: function(data){ 
+						
+						location.reload();
+					},
+					error: function(xhr, status, error){
+						console.log(error);
+					}	
+        			});
+      				});
+    				});
+  				</script>
+
 			<!-- End Free Queue Table -->
 		</div>
 
