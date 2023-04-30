@@ -11,7 +11,7 @@
 		</div>
 		<div class="row p-3 text-start">
 			<div class="col">
-				<h3>KMS Karaoke</h3>
+				<h3 class="display-5">KMS Karaoke</h3>
 				Here, we do things differently.
 			</div>
 			<div class="col">

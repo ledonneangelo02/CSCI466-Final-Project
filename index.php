@@ -39,7 +39,7 @@
 	include "functions.php";
 
 ?>
-
+<!doctype html>
 <html data-bs-theme="dark">
 	<head>
 		<title>CSCI 466 Group Project</title>
@@ -84,8 +84,8 @@
 					echo "<img height=\"640px\" src=\"" . $row["CoverArt"] . "\" class=\"d-block\">";
 			?>
 					<div class="container carousel-caption d-none d-md-block">
-							<h1 class="text-light" style="text-shadow: 4px 3px 7px black;"><?php  $v = $i % 4; echo $taglines[$v]; ?></h1>
-							<h2 class="text-light" style="text-shadow: 4px 3px 7px black;"><i><?php echo $row["Name"]; ?></i></h2>
+							<h1 class="text-light display-2" style="text-shadow: 4px 3px 7px black;"><?php  $v = $i % 4; echo $taglines[$v]; ?></h1>
+							<h2 class="text-light display-3" style="text-shadow: 4px 3px 7px black;"><i><?php echo $row["Name"]; ?></i></h2>
 					</div>
 			<?php
 					echo "</div>";
@@ -106,17 +106,16 @@
 		</div>
 		<!-- END Front-Page Carousel --------------------------------------- -->
 
-		<div class="container-md">
-			<h1 class="m-3">What's Currently Playing</h1>
-		</div>	
 		<?php include "components/activeplayer.php"; ?>
 
-    	<div class="container-md">
-			<h1 class="m-3">Our Favorite Picks</h1>	
-			<?php
-			$result = $PDO->query("SELECT * FROM `Song` ORDER BY RAND() LIMIT 6;");
-			displaySongsFormless($PDO, $result);
-			?>
+		<div class="bg-dark-subtle p-3">
+			<div class="container-md">
+				<h3 class="display-3 text-center">Current Top Picks</h3>
+				<?php
+				$result = $PDO->query("SELECT * FROM `Song` ORDER BY RAND() LIMIT 6;");
+				displaySongsFormless($PDO, $result);
+				?>
+			</div>
 		</div>
 
 		<?php include "components/footer.php" ?>

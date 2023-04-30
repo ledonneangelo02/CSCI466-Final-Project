@@ -37,7 +37,7 @@
 	}
 
 ?>
-
+<!doctype html>
 <html data-bs-theme="dark">
 	<head>
 		<title>CSCI 466 Group Project</title>
