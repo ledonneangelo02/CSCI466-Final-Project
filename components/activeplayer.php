@@ -31,7 +31,9 @@
 			$activeAmountPaid = $vals[0]["AmountPaid"];
 			$activeQueueType = $vals[0]["IsPaid"];
 			
-        ?>
+?>
+
+
         <div class="container p-4">
 			<div class="row">
 				<div class="col-sm-4">
@@ -50,7 +52,8 @@
 					</div>
 				</div>
 				<div class="col-sm-8">
-					<script>
+						<script src="GetOffTheStage.js"></script>
+						<script>
 						var i = 0;
 						var x = <?php echo $activeLength; ?>;
 						var s = true;
@@ -67,11 +70,14 @@
 								var timeStringA = dateA.toISOString().substring(14, 19);
 								var timeStringB = dateB.toISOString().substring(14, 19);
 								document.getElementById('ActiveTime').innerText = timeStringA + " / " + timeStringB;
-								if (i >= x)
-									clearInterval(interval);
-								i += .1;
+								if (i >= x){
+									clearInterval(interval);	
+									NextSong();
+								}
+								i += .1;	
 							}
 						}
+
 					</script>
 					<div>
 					<h1><?php echo $activeTitle; ?></h1>
