@@ -63,11 +63,10 @@
 		?>
 
 		<div class="container-md">
-				<div class="row">
 
 			<!-- Priority Queue Table -->
 			<h2 class="display-3">Priority Paid Queue</h2>
-			<table class="table">
+			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th>&nbsp;</th>
@@ -106,7 +105,7 @@
 		<div class="container-md">				
 			<!-- Free Queue Table -->
 			<h2 class="display-3">Free Queue</h2>
-			<table class="table">
+			<table class="table table-striped">
 			<thead>
 				<tr>
 				 <th>&nbsp;</th>
