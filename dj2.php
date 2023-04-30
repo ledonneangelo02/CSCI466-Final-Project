@@ -69,7 +69,7 @@
 						<table class="table">
 							<thead>
 								<tr>
-								 <th>&#8383 Bitcoin Paid</th>
+								 <th>&#8383 Paid</th>
 								 <th>Singer</th>
 								 <th>Song Title</th>
 								 <th>Main Artist</th>
