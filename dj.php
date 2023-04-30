@@ -92,13 +92,14 @@
 						   echo "<td>$row[2]</br><i>Artist: $row[3]</i></td>";
 						   echo "<td>".$row["ID"]."</td>";
 						   echo "<td>$row[4]</td>";
-							  echo "</tr>";			   
-							  $i++;
+					           echo "</tr>";			   
+						   $i++;
 					   }
 
 					?>
 				</tbody>
 			</table>
+
 			<!-- End Priority Queue Table -->
 		</div>
 
