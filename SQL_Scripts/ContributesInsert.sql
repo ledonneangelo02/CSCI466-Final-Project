@@ -184,6 +184,9 @@ INSERT INTO Contributes (SongID,RoleID,ArtistID,DateAndTime) VALUES ('22','4','3
 INSERT INTO Contributes (SongID,RoleID,ArtistID,DateAndTime) VALUES ('33','1','33','2018-10-01 23:54:00');
 INSERT INTO Contributes (SongID,RoleID,ArtistID,DateAndTime) VALUES ('33','4','33','2018-10-01 23:54:00');
 
+#Travis Scott
+INSERT INTO Contributes (SongID,RoleID,ArtistID,DateAndTime) VALUES ('22','2','32','2022-05-03 12:49:00');
+INSERT INTO Contributes (SongID,RoleID,ArtistID,DateAndTime) VALUES ('22','4','32','2022-05-03 12:49:00');
 
 
 
