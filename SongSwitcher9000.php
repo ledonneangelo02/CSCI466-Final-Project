@@ -50,7 +50,8 @@
 	}else if(!empty($_POST['NextFlag'])){
 
 		$Test1 = $PDO->exec("UPDATE Queue SET Status=2 WHERE Status=1;");
-		$Test2 = $PDO->exec("UPDATE Queue SET Status = 1 WHERE ID = (SELECT MIN(ID) FROM Queue WHERE IsPaid='Y');");
+		$Test2 = $PDO->exec("UPDATE Queue SET Status = 1 WHERE ID = (SELECT MIN(ID) FROM Queue WHERE IsPaid='Y' AND Status='0');");
+
 		
 	}
 ?>

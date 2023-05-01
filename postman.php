@@ -10,6 +10,9 @@ if (isset($_POST['paidQ']) || isset($_POST['freeQ'])) {
   {
     $paid = "Y";
     $price = $_POST["price"];
+    if($price < .00001){
+    	$paid = "N";
+    }	    
   }
   if (isset($_POST['freeQ']))
   {
