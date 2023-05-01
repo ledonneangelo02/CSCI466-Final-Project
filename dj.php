@@ -124,6 +124,7 @@
 			</thead>
 			<tbody>
 				<?php 
+		
 				   $prepared = $PDO->prepare($FreeQueueFinderBoi);
 						  $succ = $prepared->execute();
 				   while($row = $prepared->fetch(PDO::FETCH_BOTH)){
@@ -139,14 +140,14 @@
 				?>
 			</tbody>
 			</table>
-
+				
 				<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-  				<script>
+				<script>
     				$(document).ready(function() {
 
 
-					$('tr.clickable-row').click(function() {
+				$('tr.clickable-row').click(function() {
         				var QueID = $(this).data('id');
         
        				 $.ajax({
@@ -163,7 +164,9 @@
         			});
       				});
     				});
-  				</script>
+				</script>
+			   
+
 
 			<!-- End Free Queue Table -->
 		</div>

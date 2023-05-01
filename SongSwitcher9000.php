@@ -37,12 +37,23 @@
 	}
 
 	
-	$QueID = $_POST['ID'];
-
+	if(!empty($_POST['ID'])){
+		
+		$QueID = $_POST['ID'];
 		$Test1 = $PDO->exec("UPDATE Queue SET Status=2 WHERE Status=1;");
-		$Test2 = $PDO->exec("UPDATE Queue SET Status=1 WHERE ID=$QueID;");
+		if($QueID == '0'){
 
+			$Test2 = $PDO->exec("UPDATE Queue SET Status=1 WHERE ID = (SELECT MIN(ID) FROM QUEUE);");
+		
+		}else{
+			$Test2 = $PDO->exec("UPDATE Queue SET Status=1 WHERE ID=$QueID;");
+		}
 		echo json_encode(array('message' => 'Data receieved Successfully'));
-
+	}
 ?>
+
+	
+<script>		
+	function checkEndSong
+</script>
 
