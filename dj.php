@@ -58,8 +58,24 @@
 		<?php include "components/activeplayer.php"; ?>
 
 		<?php
-		$PaidQueueFinderBoi = "SELECT Queue.AmountPaid, Person.FirstName 'Singer', Song.Name 'Song Title', Artist.Name 'Main Artist', KaraokeFile.ID 'KarFileID', Queue.ID, Song.CoverArt FROM Song, Queue, Enqueues, Artist,AssociatedWith, Contributes, Person, Role, KaraokeFile WHERE Song.ID = Contributes.SongID AND Song.ID = AssociatedWith.SongID AND Person.ID = Enqueues.PersonID AND KaraokeFile.ID = AssociatedWith.KarFileID AND KaraokeFile.ID = Enqueues.KarFileID AND Queue.ID = Enqueues.QueueID AND Artist.ID = AssociatedWith.ArtistID AND Artist.ID = Contributes.ArtistID AND Queue.IsPaid = 'Y' AND Queue.Status = '0' GROUP BY Queue.ID;";
-		$FreeQueueFinderBoi = "SELECT Person.FirstName 'Singer', Song.Name 'Song Title', Artist.Name 'Main Artist', KaraokeFile.ID 'KarFileID', Queue.ID, Song.CoverArt FROM Song, Queue, Enqueues, Artist,AssociatedWith, Contributes, Person, Role, KaraokeFile WHERE Song.ID = Contributes.SongID AND Song.ID = AssociatedWith.SongID AND Person.ID = Enqueues.PersonID AND KaraokeFile.ID = AssociatedWith.KarFileID AND KaraokeFile.ID = Enqueues.KarFileID AND Queue.ID = Enqueues.QueueID AND Artist.ID = AssociatedWith.ArtistID AND Artist.ID = Contributes.ArtistID AND Queue.IsPaid = 'N' AND Queue.Status = '0' GROUP BY Queue.ID;";
+		$PaidQueueFinderBoi = "SELECT Queue.AmountPaid, Person.FirstName 'Singer', Song.Name 'Song Title', Artist.Name 'Main Artist', KaraokeFile.ID 'KarFileID', Queue.ID, Song.CoverArt FROM Song, Queue, Enqueues, Artist,AssociatedWith, Contributes, Person, Role, KaraokeFile WHERE Song.ID = Contributes.SongID AND Song.ID = AssociatedWith.SongID AND Person.ID = Enqueues.PersonID AND KaraokeFile.ID = AssociatedWith.KarFileID AND KaraokeFile.ID = Enqueues.KarFileID AND Queue.ID = Enqueues.QueueID AND Artist.ID = AssociatedWith.ArtistID AND Artist.ID = Contributes.ArtistID AND Queue.IsPaid = 'Y' AND Queue.Status = '0' GROUP BY Queue.ID";
+		if (isset($_GET["sort_price"]))
+		{
+			$PaidQueueFinderBoi .= " ORDER BY AmountPaid";
+			if ($_GET["sort_price"] == 1)
+				$PaidQueueFinderBoi .= " ASC";
+			else
+				$PaidQueueFinderBoi .= " DESC";
+		}
+		if (isset($_GET["sort_qid"]))
+		{
+			$PaidQueueFinderBoi .= " ORDER BY Queue.ID";
+			if ($_GET["sort_qid"] == 1)
+				$PaidQueueFinderBoi .= " DESC";
+			else
+				$PaidQueueFinderBoi .= " ASC";
+		}
+		$FreeQueueFinderBoi = "SELECT Person.FirstName 'Singer', Song.Name 'Song Title', Artist.Name 'Main Artist', KaraokeFile.ID 'KarFileID', Queue.ID, Song.CoverArt FROM Song, Queue, Enqueues, Artist,AssociatedWith, Contributes, Person, Role, KaraokeFile WHERE Song.ID = Contributes.SongID AND Song.ID = AssociatedWith.SongID AND Person.ID = Enqueues.PersonID AND KaraokeFile.ID = AssociatedWith.KarFileID AND KaraokeFile.ID = Enqueues.KarFileID AND Queue.ID = Enqueues.QueueID AND Artist.ID = AssociatedWith.ArtistID AND Artist.ID = Contributes.ArtistID AND Queue.IsPaid = 'N' AND Queue.Status = '0' GROUP BY Queue.ID";
 		?>
 
 		<style>
@@ -77,10 +93,32 @@
 				<thead>
 					<tr>
 						<th>&nbsp;</th>
-						<th><i class="bi bi-currency-bitcoin"></i> Price</th>
+						<?php
+							if (isset($_GET["sort_price"]))
+							{
+								$value = $_GET["sort_price"];
+								$opposite = ($value == 1) ? 0 : 1;
+								echo "<th><a href=\"./dj.php?sort_price=$opposite\"><i class=\"bi bi-currency-bitcoin\"></i> Price</a></th>";
+							}
+							else
+							{
+								echo "<th><a href=\"./dj.php?sort_price=0\"><i class=\"bi bi-currency-bitcoin\"></i> Price</a></th>";
+							}
+						?>
 						<th>Singer</th>
 						<th>Song</th>
-						<th>Q-ID</th>
+						<?php
+							if (isset($_GET["sort_qid"]))
+							{
+								$value = $_GET["sort_qid"];
+								$opposite = ($value == 1) ? 0 : 1;
+								echo "<th><a href=\"./dj.php?sort_qid=$opposite\">Queue ID</a></th>";
+							}
+							else
+							{
+								echo "<th><a href=\"./dj.php?sort_qid=0\">Queue ID</a></th>";
+							}
+						?>
 						<th>K-ID</th>
 					</tr>
 				</thead>

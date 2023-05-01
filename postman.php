@@ -47,7 +47,7 @@ if (isset($_POST['paidQ']) || isset($_POST['freeQ'])) {
 
           if ($success) {
             $success = 1;
-            $success_message = "Make your preparations to sing mother fucker";
+            $success_message = "Make your preparations to sing " . getSongName($PDO, $song);
           }
 
           else {
@@ -66,10 +66,8 @@ if (isset($_POST['paidQ']) || isset($_POST['freeQ'])) {
 
 
 //Handle the search on Nav Bar
-$nav_search = $_POST['navsearch'] ?? '';
-if ($nav_search == "navsearch") {
-
-  $search_string = $_POST['search'];
+$search_string = $_GET['search'] ?? '';
+if ($search_string) {
 
   //Search by Song Name
   $sql = 'SELECT * FROM `Song` WHERE `Name` LIKE :searchQuery';
@@ -83,9 +81,12 @@ if ($nav_search == "navsearch") {
       $stmt->execute(['searchQuery' => '%' . $search_string . '%']);
       $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-      $artist_id = $row['ID'];
+      if ($row) {
+        $artist_id = $row['ID'];
+        $search_artist = $PDO->query("SELECT * FROM `Song` WHERE `ID` IN (SELECT `SongID` FROM `AssociatedWith` WHERE `ArtistID` = '$artist_id');");
+      }
 
-      $search_artist = $PDO->query("SELECT * FROM `Song` WHERE `ID` IN (SELECT `SongID` FROM `AssociatedWith` WHERE `ArtistID` = '$artist_id');");
+      
 
 //Search by Genre Name
   $sql = 'SELECT * FROM `Song` WHERE `Genre` LIKE :searchQuery';

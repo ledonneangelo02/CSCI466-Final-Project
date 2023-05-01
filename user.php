@@ -57,21 +57,17 @@ include "components/navbar.php";
 		if ($danger==1) {
 		?>
   		<div class="alert alert-danger alert-dismissible fade show" role="alert">
-  		<strong>Error: </strong><?php echo $danger_message; ?>
-  		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-  		<span aria-hidden="true">&times;</span>
-  		</button>
-  		</div>
+  		<strong>Error: </strong><?php echo $danger_message; ?> 
+  		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
 		<?php } ?>  
 
 		<?php
 		if ($warning==1) {
 		?>
-		<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  		<strong>Warning: </strong><?php echo $warning_message; ?>
-  		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    	<span aria-hidden="true">&times;</span>
-  		</button>
+  		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  		<strong>Warning: </strong><?php echo $warning_message; ?> 
+  		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 		<?php } ?> 
 
@@ -80,10 +76,8 @@ include "components/navbar.php";
 		if ($success==1) {
 		?>
 		<div class="alert alert-success alert-dismissible fade show" role="alert">
-  		<strong>Succcess! </strong><?php echo $success_message; ?>
-  		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    	<span aria-hidden="true">&times;</span>
-  		</button>
+  		<strong>Success: </strong><?php echo $success_message; ?> 
+  		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 		<?php } ?> 
 
@@ -91,11 +85,11 @@ include "components/navbar.php";
 		<?php
 
 
-		if (isset($search_string)) 
+		if ($search_string != "") 
 			echo "<h3 class='display-3 text-center'>Search Results</h3>";
 		if (isset($search_song)) {
 			echo "<h4 class='display-4 text-center'>Song Search</h4>";
-			displaySongTable($PDO, $search_song);
+			displaySongTable($PDO, $search_song, $search_string);
 		}
 		?>
 
@@ -103,13 +97,13 @@ include "components/navbar.php";
 		<?php	
 		if (isset($search_artist)) {
 			echo "<h4 class='display-4 text-center'>Artist Search</h4>";
-			displaySongTable($PDO, $search_artist);
+			displaySongTable($PDO, $search_artist, $search_string);
 		}
 
 		if (isset($search_genre)) {
 
 			echo "<h4 class='display-4 text-center'>Genre Search</h4>";
-			displaySongTable($PDO, $search_genre);
+			displaySongTable($PDO, $search_genre, $search_string);
 		}
 		?>
 			
