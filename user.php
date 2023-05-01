@@ -24,8 +24,6 @@
 	<head>
 		<title>CSCI 466 Group Project - User Page</title>
 
-		<!-- CSS Include -->
-		<link rel="stylesheet" href="assets/styles.css">
 
 		<!-- Bootstrap CSS/JS Framework -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
@@ -40,27 +38,78 @@
 		<!-- JavaScript Includes -->
 		<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 		<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
-		<script src="assets/script.js"></script>
+	
 
 	</head>
-	<body>
+<?php 
 
-		<?php include "components/navbar.php"; ?>
+include "components/navbar.php"; 
+
+
+?>
+	
+
+
+
+
+	<body>
+		<?php
+		if ($danger==1) {
+		?>
+  		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  		<strong>Error: </strong><?php echo $danger_message; ?>
+  		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  		<span aria-hidden="true">&times;</span>
+  		</button>
+  		</div>
+		<?php } ?>  
 
 		<?php
+		if ($warning==1) {
+		?>
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  		<strong>Warning: </strong><?php echo $warning_message; ?>
+  		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    	<span aria-hidden="true">&times;</span>
+  		</button>
+		</div>
+		<?php } ?> 
+
+
+		<?php
+		if ($success==1) {
+		?>
+		<div class="alert alert-success alert-dismissible fade show" role="alert">
+  		<strong>Succcess! </strong><?php echo $success_message; ?>
+  		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    	<span aria-hidden="true">&times;</span>
+  		</button>
+		</div>
+		<?php } ?> 
+
+
+		<?php
+
+
 		if (isset($search_string)) 
-			echo "<h2>Search Results</h2>";
+			echo "<h3 class='display-3 text-center'>Search Results</h3>";
 		if (isset($search_song)) {
-			echo "<h3>Song Search</h3>";
-			displaySongs($PDO, $search_song);
+			echo "<h4 class='display-4 text-center'>Song Search</h4>";
+			displaySongTable($PDO, $search_song);
 		}
 		?>
 
 
 		<?php	
 		if (isset($search_artist)) {
-			echo "<h3>Artist Search</h3>";
-			displaySongs($PDO, $search_artist);
+			echo "<h4 class='display-4 text-center'>Artist Search</h4>";
+			displaySongTable($PDO, $search_artist);
+		}
+
+		if (isset($search_genre)) {
+
+			echo "<h4 class='display-4 text-center'>Genre Search</h4>";
+			displaySongTable($PDO, $search_genre);
 		}
 		?>
 			
