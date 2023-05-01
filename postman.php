@@ -18,7 +18,7 @@ if (isset($_POST['paidQ']) || isset($_POST['freeQ'])) {
   }
   $sql = "INSERT INTO `Queue` (IsPaid, AmountPaid) VALUES (:paid, :amount);";
   $prepared = $PDO->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-  $success = $prepared->execute([':paid'=>$paid,':amount'=>$price]);
+  $success = $prepared->execute([':paid'=>$paid,':amount'=>floatval($price)]);
 
       if ($success) {
         $queue_id = $PDO->lastInsertId();

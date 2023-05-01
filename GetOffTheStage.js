@@ -1,18 +1,19 @@
 function NextSong(){
 
-	console.log("Hello");
     	$(document).ready(function() { 
        	$.ajax({
           	type: 'POST',
           	url: 'SongSwitcher9000.php',
-          	data: { 'ID': '0' },
+          	data: { 'NextFlag': 'Y' },
 		success: function(data){ 
-						
+				
 			location.reload();
+			console.log(data);
 		},
 		error: function(xhr, status, error){
 			console.log(error);
-		}	
+		}
+		
 	});      
 	});			
 }
