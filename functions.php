@@ -154,12 +154,12 @@ function displaySongsFormless($PDO, $result) {
 	<?php
 }
 
-function displaySongTable($PDO, $result) {
+function displaySongTable($PDO, $result, $search_string) {
 
 	?>
 	<table class="table table-dark">
 		<tr>
-			<td>Song Name</td>
+			<td><a href="user.php?search=<?php echo $search_string; ?>&sort_by=song_name&sort=<?php echo $sorted; ?>">Song Name</a></td>
 			<td>Artist Name</td>
 			<td>Contributors</td>
 			<td>Genre</td>
@@ -235,6 +235,7 @@ function displaySongTable($PDO, $result) {
 			</tr>		
 			<?php } ?>
 	</table>
+	
 
 <?php
 }
