@@ -141,7 +141,7 @@ INSERT INTO AssociatedWith (ArtistID, KarFileID, SongID) VALUES ('31','16','32')
 #J Cole
 INSERT INTO AssociatedWith (ArtistID, KarFileID, SongID) VALUES ('32','54','22');
 INSERT INTO AssociatedWith (ArtistID, KarFileID, SongID) VALUES ('32','56','22');
-INSERT INTO AssociatedWith (ArtistID, KarFileID, SongID) VALUES ('32','57','22');
+INSERT INTO AssociatedWith (ArtistID, KarFileID, SongID) VALUES ('32','58','22');
 INSERT INTO AssociatedWith (ArtistID, KarFileID, SongID) VALUES ('32','59','22');
 
 #Pinkfong
@@ -149,5 +149,6 @@ INSERT INTO AssociatedWith (ArtistID, KarFileID, SongID) VALUES ('33','63','33')
 
 #Travis Scott
 INSERT INTO AssociatedWith (ArtistID, KarFileID, SongID) VALUES ('34','54','22');
-INSERT INTO AssociatedWith (ArtistID, KarFileID, SongID) VALUES ('34','58','22');
+INSERT INTO AssociatedWith (ArtistID, KarFileID, SongID) VALUES ('34','57','22');
+INSERT INTO AssociatedWith (ArtistID, KarFileID, SongID) VALUES ('34','59','22');
 INSERT INTO AssociatedWith (ArtistID, KarFileID, SongID) VALUES ('34','60','22');
