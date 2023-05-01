@@ -44,3 +44,4 @@ INSERT INTO Artist (Name, Band) VALUES("Patrick Stump", "Fall Out Boys");
 INSERT INTO Artist (Name) VALUES("PnB Rock");
 INSERT INTO Artist (Name) VALUES("J Cole");
 INSERT INTO Artist (Name) VALUES("Pinkfong");
+INSERT INTO Artist (Name) VALUES("Travis Scott");
