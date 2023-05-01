@@ -87,11 +87,15 @@
 					</div><br/>
 					<button type="button" class="btn btn-light"><i class="bi bi-rewind"></i></button>
 					<button id="ActivePause" type="button" class="btn btn-light"><i class="bi bi-pause-btn"></i></button>
-					<button type="button" class="btn btn-light"><i class="bi bi-fast-forward"></i></button>
+					<button id="GottaGoFast" type="button" class="btn btn-light"><i class="bi bi-fast-forward"></i></button>
 					</div><br/>
 					<script>
 						document.getElementById("ActivePause").addEventListener('click',function () {
 							s = !s;
+						});
+		
+						document.getElementById("GottaGoFast").addEventListener('click', function (){
+							NextSong();	
 						});
 					</script>
 					<?php
