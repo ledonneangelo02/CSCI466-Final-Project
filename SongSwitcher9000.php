@@ -36,24 +36,24 @@
 		echo "<p>" . "Connection failed: " . $results["res"] . "</p>";
 	}
 
+		
+
+	
 	
 	if(!empty($_POST['ID'])){
 		
-		$QueID = $_POST['ID'];
 		$Test1 = $PDO->exec("UPDATE Queue SET Status=2 WHERE Status=1;");
-		if($QueID == '0'){
-
-			$Test2 = $PDO->exec("UPDATE Queue SET Status=1 WHERE ID = (SELECT MIN(ID) FROM QUEUE);");
-		
-		}else{
-			$Test2 = $PDO->exec("UPDATE Queue SET Status=1 WHERE ID=$QueID;");
-		}
+		$QueID = $_POST['ID'];	
+		$Test2 = $PDO->exec("UPDATE Queue SET Status=1 WHERE ID=$QueID;");
 		echo json_encode(array('message' => 'Data receieved Successfully'));
+	
+	}else if(!empty($_POST['NextFlag'])){
+
+		$Test1 = $PDO->exec("UPDATE Queue SET Status=2 WHERE Status=1;");
+		$Test2 = $PDO->exec("UPDATE Queue SET Status = 1 WHERE ID = (SELECT MIN(ID) FROM Queue WHERE IsPaid='Y' AND Status='0');");
+
+		
 	}
 ?>
 
-	
-<script>		
-	function checkEndSong
-</script>
 
