@@ -8,7 +8,6 @@ function NextSong(){
 		success: function(data){ 
 				
 			location.reload();
-			console.log(data);
 		},
 		error: function(xhr, status, error){
 			console.log(error);
@@ -16,4 +15,9 @@ function NextSong(){
 		
 	});      
 	});			
+}
+
+function HoldUpCowboy(timeIn){
+
+	location.reload();
 }
