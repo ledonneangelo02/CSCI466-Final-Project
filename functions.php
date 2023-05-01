@@ -33,46 +33,67 @@ function displaySongs($PDO, $result) {
 			?>
 		
 				<div class="col">
-				<div class="card m-2" style="min-height:700px;">
-					<img src="<?php echo $row['CoverArt']; ?>" class="card-img-top" alt="<?php echo $row['MainArtist']; ?>">
-					
-					<div class="card-body">
-						<form action="" method="POST">
+					<div class="card m-2" style="min-height:760px;">
+						<img src="<?php echo $row['CoverArt']; ?>" class="card-img-top" alt="<?php echo $row['MainArtist']; ?>">
+						
+						<div class="card-body d-flex flex-column">
 							<h5 class="card-title" style=""><?php echo $row['Name']; ?></h5>
 							<p class="card-text">Performed by: <?php echo $mainArtist; ?></p>
-							User:<br>
-							<select name="Client">
-							<?php
-								$resultB = $PDO->query("SELECT * FROM `Person`;");
-								while ($rowB = $resultB->fetch(PDO::FETCH_ASSOC)) {
-									?>
-									<option value="<?php echo $rowB['ID']; ?>"><?php echo $rowB['FirstName'] . " " . $rowB['LastName'];?></option> 	
+							<div class="mt-auto mx-auto">
+								<form method="POST" action="">
+									<label class="form-label">Select Your Queue Options</label>
+									<div class="input-group mb-3 align-self-end">
+										<span class="input-group-text" id="basic-addon1">Person</span>
+										<select name="Client" class="form-select" aria-label="Default select example">
+										<?php
+										$resultB = $PDO->query("SELECT * FROM `Person`;");
+										while ($rowB = $resultB->fetch(PDO::FETCH_ASSOC)) {
+											?>
+											<option value="<?php echo $rowB['ID']; ?>"><?php echo $rowB['FirstName'] . " " . $rowB['LastName'];?></option> 	
+										<?php
+										}	
+										?>
+										</select>
+									</div>
+									<div class="input-group mb-3">
+										<span class="input-group-text" id="basic-addon1">Karaoke</span>
+										<select name="KFile" class="form-select" aria-label="Default select example">
+											<?php
+											$resultC = $PDO->query("SELECT * FROM AssociatedWith, Artist WHERE `SongID` = '$songID' AND ArtistID = Artist.ID");
+											$selections = array();
+											while ($rowC = $resultC->fetch(PDO::FETCH_ASSOC))
+											{
+												$selections[$rowC["KarFileID"]][] = $rowC["Name"];
+											}
 
-								<?php
-								}	
-								?>
-							</select>
-							<br>
-							Karaoke File:<br>
-							<select name="KFile">
-							<?php
-								$resultC = $PDO->query("SELECT * FROM `AssociatedWith` WHERE `SongID` = '$songID';");
-								$version = 0;
-								while ($rowC = $resultC->fetch(PDO::FETCH_ASSOC)) {
-									$version++;
-									?>
-									<option value="<?php echo $rowC['KarFileID']; ?>">Version <?php echo $version; ?></option> 	
-
-								<?php
-								}	
-								?>
-							</select>
-							<br>
-							<input type="hidden" name="ID" value="<?php echo $songID; ?>">
-							<input type="submit" name="freeQ" class="btn btn-primary" value="Free Queue">&nbsp;&nbsp;<input type="submit" name="paidQ" class="btn btn-success" value="Paid Queue">
-						</form>
+											foreach ($selections as $keyC=>$selC)
+											{
+												echo "<option value=\"$keyC\">";
+												$m = count($selC);
+												$i = 0;
+												foreach ($selC as $artistC)
+												{
+													echo $artistC;
+													if ($i < $m-1)
+														echo " & ";
+													$i++;
+												}
+												echo "</option>";
+											}
+											?>
+										</select>
+									</div>
+									<div class="input-group mb-3">
+										<input type="submit" name="freeQ" value="Free Queue" class="btn btn-outline-primary"?>
+										<span class="input-group-text" id="basic-addon1"><i class="bi bi-currency-bitcoin"> </i></span>
+										<input type="text" class="form-control" placeholder="BTC" name="price">
+										<input type="submit" name="paidQ" value="Priority Queue" class="btn btn-outline-primary"/>
+									</div>
+									<input type="hidden" name="ID" value="<?php echo $songID; ?>">
+								</form>
+							</div>
+						</div>
 					</div>
-				</div>
 				</div>
 		
 		<?php
