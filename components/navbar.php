@@ -26,8 +26,8 @@
 			<ul class="navbar-nav me-auto">
 				<li class="nav-item">
 					<form class="d-flex my-auto" action="" method="POST">
-						<input class="form-control mr-sm-2 me-2" type="search" placeholder="Search" aria-label="Search">
-						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+						<input class="form-control mr-sm-2 me-2" type="search" name ="search" placeholder="Search" aria-label="Search">
+						<button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="navsearch" value="navsearch">Search</button>
 					</form>
 				</li>
 			</ul>

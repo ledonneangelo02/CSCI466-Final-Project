@@ -154,4 +154,107 @@ function displaySongsFormless($PDO, $result) {
 	<?php
 }
 
-?>
+function displaySongTable($PDO, $result) {
+
+	?>
+	<table class="table table-dark">
+		<tr>
+			<td>Song Name</td>
+			<td>Artist Name</td>
+			<td>Contributors</td>
+			<td>Genre</td>
+			<td>User Select</td>
+			<td>Track Select</td>
+			<td>Payment</td>
+			<td>Queue</td>
+		</tr>	
+		<?php
+		$results = $result->fetchAll(PDO::FETCH_ASSOC);
+		foreach ($results as $row) {
+			print_r($row);
+			$songID = $row['ID'];
+			$mainArtist = getSongArtist($PDO, $songID);
+			$genre = $row['Genre'];
+			?>
+			<tr>
+				<td><?php echo $row['Name']; ?></td>
+				<td><?php echo $mainArtist ?></td>
+				<td>
+					<?php
+					$result = $PDO->query("SELECT * FROM Contributes WHERE `SongID` = '$songID' AND `RoleID` != '1'");
+						while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+							echo getArtistName($PDO, $row['ArtistID']) . "(" . getRoleName($PDO, $row['RoleID']) . ") ";
+						
+						}
+					?>	
+				</td>
+				<td>
+				<?php echo $genre; ?>	
+				</td>
+				<td>
+					<select name="Client" class="form-select" aria-label="Default select example">
+						<?php
+						$resultB = $PDO->query("SELECT * FROM `Person`;");
+						while ($rowB = $resultB->fetch(PDO::FETCH_ASSOC)) {
+						?>
+							<option value="<?php echo $rowB['ID']; ?>"><?php echo $rowB['FirstName'] . " " . $rowB['LastName'];?></option> 	
+						<?php }	?>
+					</select>
+				</td>
+				<td>
+					<select name="KFile" class="form-select" aria-label="Default select example">
+						<?php
+						$resultC = $PDO->query("SELECT * FROM AssociatedWith, Artist WHERE `SongID` = '$songID' AND ArtistID = Artist.ID");
+						$selections = array();
+						while ($rowC = $resultC->fetch(PDO::FETCH_ASSOC)) {
+							$selections[$rowC["KarFileID"]][] = $rowC["Name"];
+						}
+						foreach ($selections as $keyC=>$selC) {
+							echo "<option value=\"$keyC\">";
+							$m = count($selC);
+							$i = 0;
+							foreach ($selC as $artistC) {
+								echo $artistC;
+								if ($i < $m-1)
+									echo " & ";
+								$i++;
+							}
+							echo "</option>";
+						}
+						?>
+					</select>
+				</td>
+				<td>
+					<span class="input-group-text" id="basic-addon1"><i class="bi bi-currency-bitcoin"> </i></span>
+					<input type="text" class="form-control" placeholder="BTC" name="price">
+				</td>
+				<td>
+					<input type="submit" name="freeQ" value="Free Queue" class="btn btn-outline-primary"?><br>
+					<input type="submit" name="paidQ" value="Priority Queue" class="btn btn-outline-primary"/>
+				</td>
+			</tr>		
+			<?php } ?>
+	</table>
+
+<?php
+}
+
+
+function getArtistName($PDO, $artist_id) {
+	$result = $PDO->query("SELECT * FROM `Artist` WHERE `ID` = '$artist_id';");
+	$row = $result->fetch(PDO::FETCH_ASSOC);
+	$artist_name = $row['Name'];
+	return $artist_name;
+}
+function getSongName($PDO, $song_id) {
+	$result = $PDO->query("SELECT * FROM `Song` WHERE `ID` = '$song_id';");
+	$row = $result->fetch(PDO::FETCH_ASSOC);
+	$song_name = $row['Name'];
+	return $song_name;
+}
+function getRoleName($PDO, $role_id) {
+	$result = $PDO->query("SELECT * FROM `Role` WHERE `ID` = '$role_id';");
+	$row = $result->fetch(PDO::FETCH_ASSOC);
+	$role_name = $row['RoleType'];
+	return $role_name;
+}
