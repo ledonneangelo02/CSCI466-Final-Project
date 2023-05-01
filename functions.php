@@ -84,10 +84,13 @@ function displaySongs($PDO, $result) {
 										</select>
 									</div>
 									<div class="input-group mb-3">
-										<input type="submit" name="freeQ" value="Free Queue" class="btn btn-outline-primary"?>
+										<input type="submit" name="freeQ" value="Free Queue" class="btn btn-outline-primary"/>
+										
+									</div>
+									<div class="input-group mb-3">	
+										<input type="submit" name="paidQ" value="Priority Queue" class="btn btn-outline-primary"/>
 										<span class="input-group-text" id="basic-addon1"><i class="bi bi-currency-bitcoin"> </i></span>
 										<input type="text" class="form-control" placeholder="BTC" name="price">
-										<input type="submit" name="paidQ" value="Priority Queue" class="btn btn-outline-primary"/>
 									</div>
 									<input type="hidden" name="ID" value="<?php echo $songID; ?>">
 								</form>
