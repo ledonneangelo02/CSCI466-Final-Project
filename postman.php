@@ -1,19 +1,24 @@
 <?php
 
 //Handle the adding of songs to the queue
-$paid_queue = $_POST['paidQ'] ?? '';
-$free_queue = $_POST['freeQ'] ?? '';
-if ($paid_queue == "Paid Queue" || $free_queue == "Free Queue") {
+if (isset($_POST['paidQ']) || isset($_POST['freeQ'])) {
   $client = $_POST['Client'];
   $kfile = $_POST['KFile'];
   $song = $_POST['ID'];
-  if ($paid_queue == "Paid Queue")
+  $price = "0.0";
+  if (isset($_POST['paidQ']))
+  {
     $paid = "Y";
-  if ($free_queue == "Free Queue")
+    $price = $_POST["price"];
+  }
+  if (isset($_POST['freeQ']))
+  {
     $paid = "N";
-  $sql = "INSERT INTO `Queue` (IsPaid) VALUES (:paid);";
+    $price = "0.0";
+  }
+  $sql = "INSERT INTO `Queue` (IsPaid, AmountPaid) VALUES (:paid, :amount);";
   $prepared = $PDO->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-  $success = $prepared->execute([':paid'=>$paid]);
+  $success = $prepared->execute([':paid'=>$paid,':amount'=>$price]);
 
       if ($success) {
         $queue_id = $PDO->lastInsertId();

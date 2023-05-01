@@ -46,28 +46,44 @@
 	<body>
 
 		<?php include "components/navbar.php"; ?>
+		
+		<?php
+		//Testing Area
+		echo "POST dump<br>";
+		var_dump($_POST);
+		?>
+		
+		<!-- Autocomplete
+		 <div class="list-group" id="search-results">
+		 	Autocomplete...
+ 
+        </div>
+		-->
 
 		<?php
+
 		if (isset($search_string)) 
 			echo "<h2>Search Results</h2>";
 		if (isset($search_song)) {
 			echo "<h3>Song Search</h3>";
 			displaySongs($PDO, $search_song);
-		}
-		?>
-
-
+			}
+			?>
+			<div style="clear:both;">
+			</div>
 		<?php	
 		if (isset($search_artist)) {
 			echo "<h3>Artist Search</h3>";
 			displaySongs($PDO, $search_artist);
-		}
-		?>
+			}
+			?>
+			<div style="clear:both;">
+			</div>	
 			
 	
 
-		<div class="container-md">
-			<h3 class="display-3 text-center">Song Catalog Browser</h3>
+    	<h2>Browse Songs</h2>
+    	<div class="container-md">
 			<?php
 			$result = $PDO->query("SELECT * FROM `Song`;");
 			displaySongs($PDO, $result);
