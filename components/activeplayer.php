@@ -74,7 +74,10 @@
 									clearInterval(interval);	
 									NextSong();
 								}
-								i += .1;	
+								i += .1;
+								document.getElementById("HoldYourHorses").addEventListener('click', function (){
+									HoldUpCowboy();	
+								});				
 							}
 						}
 
@@ -85,7 +88,7 @@
 					<div class="progress" role="progressbar" style="width:100%">
 						<div id="ActivePlayer" class="progress-bar" style="width: 0%"></div>
 					</div><br/>
-					<button type="button" class="btn btn-light"><i class="bi bi-rewind"></i></button>
+					<button id="HoldYourHorses" type="button" class="btn btn-light"><i class="bi bi-rewind"></i></button>
 					<button id="ActivePause" type="button" class="btn btn-light"><i class="bi bi-pause-btn"></i></button>
 					<button id="GottaGoFast" type="button" class="btn btn-light"><i class="bi bi-fast-forward"></i></button>
 					</div><br/>
@@ -96,7 +99,8 @@
 		
 						document.getElementById("GottaGoFast").addEventListener('click', function (){
 							NextSong();	
-						});
+						});		
+						
 					</script>
 					<?php
 						foreach($artistVocalized as $ActiveArtist)

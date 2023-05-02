@@ -101,10 +101,13 @@ function displaySongs($PDO, $result) {
 										</select>
 									</div>
 									<div class="input-group mb-3">
-										<input type="submit" name="freeQ" value="Free Queue" class="btn btn-outline-primary"?>
+										<input type="submit" name="freeQ" value="Free Queue" class="btn btn-outline-primary"/>
+										
+									</div>
+									<div class="input-group mb-3">	
+										<input type="submit" name="paidQ" value="Priority Queue" class="btn btn-outline-primary"/>
 										<span class="input-group-text" id="basic-addon1"><i class="bi bi-currency-bitcoin"> </i></span>
 										<input type="text" class="form-control" placeholder="BTC" name="price">
-										<input type="submit" name="paidQ" value="Priority Queue" class="btn btn-outline-primary"/>
 									</div>
 									<input type="hidden" name="ID" value="<?php echo $row['Song.ID']; ?>">
 								</form>
@@ -278,4 +281,22 @@ function displaySongTable($PDO, $result, $search_string) {
 <?php
 }
 
+function getArtistName($PDO, $artist_id) {
+	$result = $PDO->query("SELECT * FROM `Artist` WHERE `ID` = '$artist_id';");
+	$row = $result->fetch(PDO::FETCH_ASSOC);
+	$artist_name = $row['Name'];
+	return $artist_name;
+}
+function getSongName($PDO, $song_id) {
+	$result = $PDO->query("SELECT * FROM `Song` WHERE `ID` = '$song_id';");
+	$row = $result->fetch(PDO::FETCH_ASSOC);
+	$song_name = $row['Name'];
+	return $song_name;
+}
+function getRoleName($PDO, $role_id) {
+	$result = $PDO->query("SELECT * FROM `Role` WHERE `ID` = '$role_id';");
+	$row = $result->fetch(PDO::FETCH_ASSOC);
+	$role_name = $row['RoleType'];
+	return $role_name;
+}
 
