@@ -65,18 +65,38 @@
                 <?php
                 if (isset($_POST['submit']))
                 {
-
                     //Check if any form elements are missing and print an error.
                     if ($_POST['Email'] == null)
                     {
                         echo "You did not enter an email address! \n";
-                    }
+		    }
                     else if ($_POST['FirstName'] == null)
                     {
                         echo "You did not enter your first name! \n";
                     }
                     else
-                    {
+		    {
+			$key = $_POST['Email'];
+			$kill = false;
+			//Check if email alredy exists in the database and print an error if it does.
+			$sql = 'SELECT Email FROM Person WHERE Email = :key';
+			$stmt = $PDO->prepare($sql);
+			$stmt->execute(['key' => $key]);
+			$posts = $stmt->fetchAll();
+			
+			foreach($posts as $post)
+			{
+				echo "This email address is alredy associated with an account.";
+				$kill = true;
+			}
+
+			
+			if ($kill == true)
+			{
+				exit;
+			}
+
+
                         $sql = 'INSERT INTO Person (FirstName, LastName, Email, AddressLine1, AddressLine2) VALUES (:FirstName, :LastName, :Email, :AddressLine1, :AddressLine2);';
                         $stmt = $PDO->prepare($sql);
                         $stmt->execute(['FirstName' => $_POST['FirstName'], 'LastName' => $_POST['LastName'], 'Email' => $_POST['Email'], 'AddressLine1' => $_POST['AddressLine1'], 'AddressLine2' => $_POST['AddressLine2']]);
