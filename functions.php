@@ -130,7 +130,6 @@ function displaySongs($PDO, $result) {
 }
 
 
-
 function displaySongsFormless($PDO, $result) {
 	?>
 
@@ -139,6 +138,8 @@ function displaySongsFormless($PDO, $result) {
 	<?php
 		$count = 0;
 		while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+			$songID = $row['ID'];
+			$mainArtist = getSongArtist($PDO, $songID);
 
 			if ($count % 3 == 0)
 			{
@@ -148,11 +149,11 @@ function displaySongsFormless($PDO, $result) {
 		
 				<div class="col">
 				<div class="card m-2" style="min-height:560px;">
-					<img src="<?php echo $row['Song.CoverArt']; ?>" class="card-img-top" alt="<?php echo $row['Artist.Name']; ?>">
+					<img src="<?php echo $row['CoverArt']; ?>" class="card-img-top" alt="<?php echo $row['MainArtist']; ?>">
 					
 					<div class="card-body">
 						<form action="" method="POST">
-							<h5 class="card-title" style=""><?php echo $row['Song.Name']; ?></h5>
+							<h5 class="card-title" style=""><?php echo $row['Name']; ?></h5>
 							<p class="card-text">Performed by: <?php echo $mainArtist; ?></p>
 						</form>
 					</div>
@@ -171,6 +172,7 @@ function displaySongsFormless($PDO, $result) {
 	</div>
 	<?php
 }
+
 
 function displaySongTable($PDO, $result, $search_string) {
 	?>
@@ -280,6 +282,23 @@ function displaySongTable($PDO, $result, $search_string) {
 
 <?php
 }
-
-
+/*function getArtistName($PDO, $artist_id) {
+	$result = $PDO->query("SELECT * FROM `Artist` WHERE `ID` = '$artist_id';");
+	$row = $result->fetch(PDO::FETCH_ASSOC);
+	$artist_name = $row['Name'];
+	return $artist_name;
+}*/
+/*function getSongName($PDO, $song_id) {
+	$result = $PDO->query("SELECT * FROM `Song` WHERE `ID` = '$song_id';");
+	$row = $result->fetch(PDO::FETCH_ASSOC);
+	$song_name = $row['Name'];
+	return $song_name;
+}*/
+/*
+function getRoleName($PDO, $role_id) {
+	$result = $PDO->query("SELECT * FROM `Role` WHERE `ID` = '$role_id';");
+	$row = $result->fetch(PDO::FETCH_ASSOC);
+	$role_name = $row['RoleType'];
+	return $role_name;
+}*/
 
