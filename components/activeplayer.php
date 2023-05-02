@@ -76,7 +76,7 @@
 								}
 								i += .1;
 								document.getElementById("HoldYourHorses").addEventListener('click', function (){
-									HoldUpCowboy(i);	
+									HoldUpCowboy();	
 								});				
 							}
 						}

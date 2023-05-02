@@ -17,7 +17,7 @@ function NextSong(){
 	});			
 }
 
-function HoldUpCowboy(timeIn){
+function HoldUpCowboy(){
 
 	location.reload();
 }
