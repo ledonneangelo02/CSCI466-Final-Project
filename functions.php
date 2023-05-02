@@ -281,22 +281,5 @@ function displaySongTable($PDO, $result, $search_string) {
 <?php
 }
 
-function getArtistName($PDO, $artist_id) {
-	$result = $PDO->query("SELECT * FROM `Artist` WHERE `ID` = '$artist_id';");
-	$row = $result->fetch(PDO::FETCH_ASSOC);
-	$artist_name = $row['Name'];
-	return $artist_name;
-}
-function getSongName($PDO, $song_id) {
-	$result = $PDO->query("SELECT * FROM `Song` WHERE `ID` = '$song_id';");
-	$row = $result->fetch(PDO::FETCH_ASSOC);
-	$song_name = $row['Name'];
-	return $song_name;
-}
-function getRoleName($PDO, $role_id) {
-	$result = $PDO->query("SELECT * FROM `Role` WHERE `ID` = '$role_id';");
-	$row = $result->fetch(PDO::FETCH_ASSOC);
-	$role_name = $row['RoleType'];
-	return $role_name;
-}
+
 
