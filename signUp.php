@@ -66,16 +66,26 @@
                 if (isset($_POST['submit']))
                 {
                     //Check if any form elements are missing and print an error.
+<<<<<<< HEAD
                     if ($_POST['Email'] == null)
                     {
                         echo "You did not enter an email address! \n";
 		    }
                     else if ($_POST['FirstName'] == null)
+=======
+   
+		    if ($_POST['Email'] == null)
+		    {
+			echo "You did not enter an email! \n";
+		    }
+	            else if ($_POST['FirstName'] == null)
+>>>>>>> origin
                     {
                         echo "You did not enter your first name! \n";
                     }
                     else
 		    {
+<<<<<<< HEAD
 			$key = $_POST['Email'];
 			$kill = false;
 			//Check if email alredy exists in the database and print an error if it does.
@@ -98,6 +108,9 @@
 
 
                         $sql = 'INSERT INTO Person (FirstName, LastName, Email, AddressLine1, AddressLine2) VALUES (:FirstName, :LastName, :Email, :AddressLine1, :AddressLine2);';
+=======
+			$sql = 'INSERT INTO Person (FirstName, LastName, Email, AddressLine1, AddressLine2) VALUES (:FirstName, :LastName, :Email, :AddressLine1, :AddressLine2);';
+>>>>>>> origin
                         $stmt = $PDO->prepare($sql);
                         $stmt->execute(['FirstName' => $_POST['FirstName'], 'LastName' => $_POST['LastName'], 'Email' => $_POST['Email'], 'AddressLine1' => $_POST['AddressLine1'], 'AddressLine2' => $_POST['AddressLine2']]);
                         
@@ -116,7 +129,7 @@
                         $vals = $statement->fetchAll(PDO::FETCH_ASSOC);
                         $row = $vals[0];
 
-                        echo "<h4> User: " . $row["FirstName"] . " " . $row["LastName"] . " created!</h4>";
+			echo "<h4> User: " . $row["FirstName"] . " " . $row["LastName"] . " created!</h4>";
                     }
                 
                 }

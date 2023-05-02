@@ -1,4 +1,22 @@
 <?php
+function getArtistName($PDO, $artist_id) {
+	$result = $PDO->query("SELECT * FROM `Artist` WHERE `ID` = '$artist_id';");
+	$row = $result->fetch(PDO::FETCH_ASSOC);
+	$artist_name = $row['Name'];
+	return $artist_name;
+}
+function getSongName($PDO, $song_id) {
+	$result = $PDO->query("SELECT * FROM `Song` WHERE `ID` = '$song_id';");
+	$row = $result->fetch(PDO::FETCH_ASSOC);
+	$song_name = $row['Name'];
+	return $song_name;
+}
+function getRoleName($PDO, $role_id) {
+	$result = $PDO->query("SELECT * FROM `Role` WHERE `ID` = '$role_id';");
+	$row = $result->fetch(PDO::FETCH_ASSOC);
+	$role_name = $row['RoleType'];
+	return $role_name;
+}
 
 function getSongArtist($PDO, $song_id) {
 
@@ -21,11 +39,9 @@ function displaySongs($PDO, $result) {
 	<div class="card-deck m-3">
 
 	<?php
+
 		$count = 0;
 		while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-			$songID = $row['ID'];
-			$mainArtist = getSongArtist($PDO, $songID);
-
 			if ($count % 3 == 0)
 			{
 				echo "<div class='row'>";
@@ -34,11 +50,11 @@ function displaySongs($PDO, $result) {
 		
 				<div class="col">
 					<div class="card m-2" style="min-height:760px;">
-						<img src="<?php echo $row['CoverArt']; ?>" class="card-img-top" alt="<?php echo $row['MainArtist']; ?>">
+						<img src="<?php echo $row['Song.CoverArt']; ?>" class="card-img-top" alt="<?php echo $row['Artist.Name']; ?>">
 						
 						<div class="card-body d-flex flex-column">
-							<h5 class="card-title" style=""><?php echo $row['Name']; ?></h5>
-							<p class="card-text">Performed by: <?php echo $mainArtist; ?></p>
+							<h5 class="card-title" style=""><?php echo $row['Song.Name']; ?></h5>
+							<p class="card-text">Performed by: <?php echo $row['Artist.Name']; ?></p>
 							<div class="mt-auto mx-auto">
 								<form method="POST" action="">
 									<label class="form-label">Select Your Queue Options</label>
@@ -59,6 +75,7 @@ function displaySongs($PDO, $result) {
 										<span class="input-group-text" id="basic-addon1">Karaoke</span>
 										<select name="KFile" class="form-select" aria-label="Default select example">
 											<?php
+											$songID = $row['Song.ID'];
 											$resultC = $PDO->query("SELECT * FROM AssociatedWith, Artist WHERE `SongID` = '$songID' AND ArtistID = Artist.ID");
 											$selections = array();
 											while ($rowC = $resultC->fetch(PDO::FETCH_ASSOC))
@@ -84,12 +101,15 @@ function displaySongs($PDO, $result) {
 										</select>
 									</div>
 									<div class="input-group mb-3">
-										<input type="submit" name="freeQ" value="Free Queue" class="btn btn-outline-primary"?>
+										<input type="submit" name="freeQ" value="Free Queue" class="btn btn-outline-primary"/>
+										
+									</div>
+									<div class="input-group mb-3">	
+										<input type="submit" name="paidQ" value="Priority Queue" class="btn btn-outline-primary"/>
 										<span class="input-group-text" id="basic-addon1"><i class="bi bi-currency-bitcoin"> </i></span>
 										<input type="text" class="form-control" placeholder="BTC" name="price">
-										<input type="submit" name="paidQ" value="Priority Queue" class="btn btn-outline-primary"/>
 									</div>
-									<input type="hidden" name="ID" value="<?php echo $songID; ?>">
+									<input type="hidden" name="ID" value="<?php echo $row['Song.ID']; ?>">
 								</form>
 							</div>
 						</div>
@@ -108,7 +128,6 @@ function displaySongs($PDO, $result) {
 	</div>
 	<?php
 }
-
 
 
 function displaySongsFormless($PDO, $result) {
@@ -154,4 +173,132 @@ function displaySongsFormless($PDO, $result) {
 	<?php
 }
 
-?>
+
+function displaySongTable($PDO, $result, $search_string) {
+	?>
+	<table class="table table-dark">
+		<tr>
+		
+			<?php
+			if (isset($_GET["sort_song"])) {
+				$value = $_GET["sort_song"];
+				$opposite = ($value == 1) ? 0 : 1;
+				echo "<td><a href='user.php?search=" . $search_string . "&sort_song=" . $opposite . "'>Song Name</a></td>";
+				}
+			else {
+				echo "<td><a href='user.php?search=" . $search_string . "&sort_song=0'>Song Name</a></td>";
+			}
+
+			if (isset($_GET["sort_artist"])) {
+				$value = $_GET["sort_artist"];
+				$opposite = ($value == 1) ? 0 : 1;
+				echo "<td><a href='user.php?search=" . $search_string . "&sort_artist=" . $opposite . "'>Artist Name</a></td>";
+				}
+			else {
+				echo "<td><a href='user.php?search=" . $search_string . "&sort_artist=0'>Artist Name</a></td>";
+			}
+			if (isset($_GET["sort_genre"])) {
+				$value = $_GET["sort_genre"];
+				$opposite = ($value == 1) ? 0 : 1;
+				echo "<td><a href='user.php?search=" . $search_string . "&sort_genre=" . $opposite . "'>Genre</a></td>";
+				}
+			else {
+				echo "<td><a href='user.php?search=" . $search_string . "&sort_genre=0'>Genre</a></td>";
+			}
+			?>
+			<td>Contributors</td>
+			<td>User</td>
+			<td>Track</td>
+			<td>Payment</td>
+			<td>Queue</td>
+		</tr>	
+		<?php
+		$results = $result->fetchAll(PDO::FETCH_ASSOC);
+		foreach ($results as $row) {
+			$songID = $row['Song.ID'];
+			?>
+			<tr>
+				<form method="POST" action=""> 
+				<td><?php echo $row['Song.Name']; ?></td>
+				<td><?php echo $row['Artist.Name'] ?></td>
+				<td>
+				<?php echo $row['Song.Genre']; ?>
+				</td>
+				<td>
+					<?php
+					$resultA = $PDO->query("SELECT * FROM Contributes WHERE `SongID` = '$songID' AND `RoleID` != '1'");
+						while ($rowA = $resultA->fetch(PDO::FETCH_ASSOC)) {
+							echo getArtistName($PDO, $rowA['ArtistID']) . " (" . getRoleName($PDO, $rowA['RoleID']) . ")   ";
+						}
+					?>	
+				</td>
+				<td>
+					<select name="Client" class="form-select" aria-label="Default select example">
+						<?php
+						$resultB = $PDO->query("SELECT * FROM `Person`;");
+						while ($rowB = $resultB->fetch(PDO::FETCH_ASSOC)) {
+						?>
+							<option value="<?php echo $rowB['ID']; ?>"><?php echo $rowB['FirstName'] . " " . $rowB['LastName'];?></option> 	
+						<?php }	?>
+					</select>
+				</td>
+				<td>
+					<select name="KFile" class="form-select" aria-label="Default select example">
+						<?php
+						$resultC = $PDO->query("SELECT * FROM AssociatedWith, Artist WHERE `SongID` = '$songID' AND ArtistID = Artist.ID");
+						$selections = array();
+						while ($rowC = $resultC->fetch(PDO::FETCH_ASSOC)) {
+							$selections[$rowC["KarFileID"]][] = $rowC["Name"];
+						}
+						foreach ($selections as $keyC=>$selC) {
+							echo "<option value=\"$keyC\">";
+							$m = count($selC);
+							$i = 0;
+							foreach ($selC as $artistC) {
+								echo $artistC;
+								if ($i < $m-1)
+									echo " & ";
+								$i++;
+							}
+							echo "</option>";
+						}
+						?>
+					</select>
+				</td>
+				<td>
+					<span class="input-group-text" id="basic-addon1"><i class="bi bi-currency-bitcoin"> </i></span>
+					<input type="text" class="form-control" placeholder="BTC" name="price">
+				</td>
+				<td>
+					<input type="submit" name="freeQ" value="Free Queue" class="btn btn-outline-primary"?><br>
+					<input type="submit" name="paidQ" value="Priority Queue" class="btn btn-outline-primary"/>
+				</td>
+				<input type="hidden" name="ID" value="<?php echo $row['Song.ID']; ?>">
+				</form>
+			</tr>		
+			<?php } ?>
+	</table>
+	
+
+<?php
+}
+/*function getArtistName($PDO, $artist_id) {
+	$result = $PDO->query("SELECT * FROM `Artist` WHERE `ID` = '$artist_id';");
+	$row = $result->fetch(PDO::FETCH_ASSOC);
+	$artist_name = $row['Name'];
+	return $artist_name;
+}*/
+/*function getSongName($PDO, $song_id) {
+	$result = $PDO->query("SELECT * FROM `Song` WHERE `ID` = '$song_id';");
+	$row = $result->fetch(PDO::FETCH_ASSOC);
+	$song_name = $row['Name'];
+	return $song_name;
+}*/
+/*
+function getRoleName($PDO, $role_id) {
+	$result = $PDO->query("SELECT * FROM `Role` WHERE `ID` = '$role_id';");
+	$row = $result->fetch(PDO::FETCH_ASSOC);
+	$role_name = $row['RoleType'];
+	return $role_name;
+}*/
+

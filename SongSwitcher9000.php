@@ -36,24 +36,29 @@
 		echo "<p>" . "Connection failed: " . $results["res"] . "</p>";
 	}
 
+		
+
+	
 	
 	if(!empty($_POST['ID'])){
 		
-		$QueID = $_POST['ID'];
-		$Test1 = $PDO->exec("UPDATE Queue SET Status=2 WHERE Status=1;");
-		if($QueID == '0'){
-
-			$Test2 = $PDO->exec("UPDATE Queue SET Status=1 WHERE ID = (SELECT MIN(ID) FROM QUEUE);");
-		
-		}else{
-			$Test2 = $PDO->exec("UPDATE Queue SET Status=1 WHERE ID=$QueID;");
-		}
+		$GTFOYaFilthyAnimal = $PDO->exec("UPDATE Queue SET Status=2 WHERE Status=1;");
+		$QueID = $_POST['ID'];	
+		$Test2 = $PDO->exec("UPDATE Queue SET Status=1 WHERE ID=$QueID;");
 		echo json_encode(array('message' => 'Data receieved Successfully'));
+	
+	}else if(!empty($_POST['NextFlag'])){
+
+		$GTFOYaFilthyAnimal = $PDO->exec("UPDATE Queue SET Status=2 WHERE Status=1;");
+		$Test2 = $PDO->exec("UPDATE Queue SET Status = 1 WHERE ID = (SELECT MIN(ID) FROM Queue WHERE IsPaid='Y' AND Status='0');");	
+		if($Test2 < 1){
+			$NextQueueBoiO = $PDO->exec("UPDATE Queue SET Status = 1 WHERE ID = (SELECT MIN(ID) FROM Queue WHERE IsPaid='N' AND Status='0');");	
+			if($NextQueueBoiO < 1){
+				$EncoreEncore = $PDO->exec("UPDATE Queue SET Status=0 WHERE Status=2;");
+				$Encore = $PDO->exec("UPDATE Queue SET Status=1 WHERE ID=19;");
+			}
+		}
 	}
 ?>
 
-	
-<script>		
-	function checkEndSong
-</script>
 
