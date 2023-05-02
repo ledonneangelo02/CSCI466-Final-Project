@@ -112,7 +112,8 @@ include "components/navbar.php";
 		<div class="container-md">
 			<h3 class="display-3 text-center">Song Catalog Browser</h3>
 			<?php
-			$result = $PDO->query("SELECT * FROM `Song`;");
+			$sql = "SELECT Song.ID 'Song.ID',Artist.ID 'Artist.ID',Song.Name 'Song.Name',Artist.Name 'Artist.Name',Song.Genre 'Song.Genre',Song.CoverArt 'Song.CoverArt' FROM Song,Artist,Contributes WHERE Song.ID = Contributes.SongID AND Artist.ID = Contributes.ArtistID AND Contributes.RoleID = 1;";
+			$result = $PDO->query($sql);
 			displaySongs($PDO, $result);
 			?>
 		</div>

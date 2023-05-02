@@ -25,9 +25,6 @@ if (isset($_POST['paidQ']) || isset($_POST['freeQ'])) {
   {
     $paid = "Y";
     $price = $_POST["price"];
-    if($price < .00001){
-    	$paid = "N";
-    }	    
   }
   if (isset($_POST['freeQ']))
   {
@@ -36,7 +33,7 @@ if (isset($_POST['paidQ']) || isset($_POST['freeQ'])) {
   }
   $sql = "INSERT INTO `Queue` (IsPaid, AmountPaid) VALUES (:paid, :amount);";
   $prepared = $PDO->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-  $success = $prepared->execute([':paid'=>$paid,':amount'=>floatval($price)]);
+  $success = $prepared->execute([':paid'=>$paid,':amount'=>$price]);
 
       if ($success) {
         $queue_id = $PDO->lastInsertId();
@@ -69,32 +66,45 @@ if (isset($_POST['paidQ']) || isset($_POST['freeQ'])) {
 $search_string = $_GET['search'] ?? '';
 if ($search_string) {
 
+  $sort = "Song.Name ASC";
+  
+  if (isset($_GET["sort_song"])) {
+    if ($_GET["sort_song"] == 1) {
+      $sort = "Song.Name DESC";
+    }
+  }
+  if (isset($_GET["sort_artist"])) {
+    if ($_GET["sort_artist"] == 0) {
+      $sort = "Artist.Name ASC";
+    }
+    else
+      $sort = "Artist.Name DESC";
+  }
+  if (isset($_GET["sort_genre"])) {
+    if ($_GET["sort_genre"] == 0) {
+      $sort = "Song.Genre ASC";
+    }
+    else
+      $sort = "Song.Genre DESC";
+  }
+
   //Search by Song Name
-  $sql = 'SELECT * FROM `Song` WHERE `Name` LIKE :searchQuery';
+  $sql = "SELECT DISTINCT Song.ID 'Song.ID',Artist.ID 'Artist.ID',Song.Name 'Song.Name',Artist.Name 'Artist.Name',Song.Genre 'Song.Genre',Song.CoverArt 'Song.CoverArt' FROM Song,Artist,Contributes WHERE Song.Name LIKE :searchQuery AND Song.ID = Contributes.SongID AND Artist.ID = Contributes.ArtistID AND Contributes.RoleID = 1 ORDER BY $sort;";
       $stmt = $PDO->prepare($sql);
       $stmt->execute(['searchQuery' => '%' . $search_string . '%']);
       $search_song = $stmt;
 
   //Search by Artist Name
-  $sql = 'SELECT * FROM `Artist` WHERE `Name` LIKE :searchQuery';
+  $sql = "SELECT DISTINCT Song.ID 'Song.ID',Artist.ID 'Artist.ID',Song.Name 'Song.Name',Artist.Name 'Artist.Name',Song.Genre 'Song.Genre',Song.CoverArt 'Song.CoverArt' FROM Song,Artist,Contributes WHERE Artist.Name LIKE :searchQuery AND Song.ID = Contributes.SongID AND Artist.ID = Contributes.ArtistID ORDER BY $sort;";
       $stmt = $PDO->prepare($sql);
       $stmt->execute(['searchQuery' => '%' . $search_string . '%']);
-      $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-      if ($row) {
-        $artist_id = $row['ID'];
-        $search_artist = $PDO->query("SELECT * FROM `Song` WHERE `ID` IN (SELECT `SongID` FROM `AssociatedWith` WHERE `ArtistID` = '$artist_id');");
-      }
-
-      
+      $search_artist = $stmt;
 
 //Search by Genre Name
-  $sql = 'SELECT * FROM `Song` WHERE `Genre` LIKE :searchQuery';
+  $sql = "SELECT DISTINCT Song.ID 'Song.ID',Artist.ID 'Artist.ID',Song.Name 'Song.Name',Artist.Name 'Artist.Name',Song.Genre 'Song.Genre',Song.CoverArt 'Song.CoverArt' FROM Song,Artist,Contributes WHERE Song.Genre LIKE :searchQuery AND Song.ID = Contributes.SongID AND Artist.ID = Contributes.ArtistID AND Contributes.RoleID = 1 ORDER BY $sort;";
       $stmt = $PDO->prepare($sql);
       $stmt->execute(['searchQuery' => '%' . $search_string . '%']);
       $search_genre = $stmt;
-
-
 }
 
 
