@@ -95,19 +95,20 @@ if ($search_string) {
   $sql = "SELECT DISTINCT Song.ID 'Song.ID',Artist.ID 'Artist.ID',Song.Name 'Song.Name',Artist.Name 'Artist.Name',Song.Genre 'Song.Genre',Song.CoverArt 'Song.CoverArt' FROM Song,Artist,Contributes WHERE Song.Name LIKE :searchQuery AND Song.ID = Contributes.SongID AND Artist.ID = Contributes.ArtistID AND Contributes.RoleID = 1 ORDER BY $sort;";
       $stmt = $PDO->prepare($sql);
       $stmt->execute(['searchQuery' => '%' . $search_string . '%']);
-      $search_song = $stmt;
+      $search_song = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
   //Search by Artist Name
   $sql = "SELECT DISTINCT Song.ID 'Song.ID',Artist.ID 'Artist.ID',Song.Name 'Song.Name',Artist.Name 'Artist.Name',Song.Genre 'Song.Genre',Song.CoverArt 'Song.CoverArt' FROM Song,Artist,Contributes WHERE Artist.Name LIKE :searchQuery AND Song.ID = Contributes.SongID AND Artist.ID = Contributes.ArtistID ORDER BY $sort;";
       $stmt = $PDO->prepare($sql);
       $stmt->execute(['searchQuery' => '%' . $search_string . '%']);
-      $search_artist = $stmt;
+      $search_artist = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 
 //Search by Genre Name
   $sql = "SELECT DISTINCT Song.ID 'Song.ID',Artist.ID 'Artist.ID',Song.Name 'Song.Name',Artist.Name 'Artist.Name',Song.Genre 'Song.Genre',Song.CoverArt 'Song.CoverArt' FROM Song,Artist,Contributes WHERE Song.Genre LIKE :searchQuery AND Song.ID = Contributes.SongID AND Artist.ID = Contributes.ArtistID AND Contributes.RoleID = 1 ORDER BY $sort;";
       $stmt = $PDO->prepare($sql);
       $stmt->execute(['searchQuery' => '%' . $search_string . '%']);
-      $search_genre = $stmt;
+      $search_genre = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 

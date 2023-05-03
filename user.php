@@ -84,27 +84,28 @@ include "components/navbar.php";
 
 		<?php
 
-
+		if ($search_string != "")
+			echo "<div class=\"container-md\">";
 		if ($search_string != "") 
 			echo "<h3 class='display-3 text-center'>Search Results</h3>";
-		if (isset($search_song)) {
+
+		if (isset($search_song) && count($search_song) != 0) {
 			echo "<h4 class='display-4 text-center'>Song Search</h4>";
 			displaySongTable($PDO, $search_song, $search_string);
 		}
-		?>
-
-
-		<?php	
-		if (isset($search_artist)) {
+	
+		if (isset($search_artist) && count($search_artist) != 0) {
 			echo "<h4 class='display-4 text-center'>Artist Search</h4>";
 			displaySongTable($PDO, $search_artist, $search_string);
 		}
 
-		if (isset($search_genre)) {
+		if (isset($search_genre) && count($search_genre) != 0) {
 
 			echo "<h4 class='display-4 text-center'>Genre Search</h4>";
 			displaySongTable($PDO, $search_genre, $search_string);
 		}
+		if ($search_string != "")
+			echo "</div>";
 		?>
 			
 	
