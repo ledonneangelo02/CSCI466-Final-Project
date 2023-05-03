@@ -25,7 +25,7 @@
 			</ul>
 			<ul class="navbar-nav me-auto">
 				<li class="nav-item">
-					<form class="d-flex my-auto" action="" method="GET">
+					<form class="d-flex my-auto" action="user.php" method="GET">
 						<input class="form-control mr-sm-2 me-2" type="search" name ="search" placeholder="Song, Artist or Genre!" aria-label="Search">
 						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 					</form>

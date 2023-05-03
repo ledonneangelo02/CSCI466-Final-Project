@@ -178,7 +178,7 @@ function displaySongTable($PDO, $result, $search_string) {
 	?>
 	<table class="table table-dark">
 		<tr>
-		
+			<td></td>
 			<?php
 			if (isset($_GET["sort_song"])) {
 				$value = $_GET["sort_song"];
@@ -207,18 +207,16 @@ function displaySongTable($PDO, $result, $search_string) {
 			}
 			?>
 			<td>Contributors</td>
-			<td>User</td>
-			<td>Track</td>
-			<td>Payment</td>
 			<td>Queue</td>
 		</tr>	
 		<?php
-		$results = $result->fetchAll(PDO::FETCH_ASSOC);
+		$results = $result;
 		foreach ($results as $row) {
 			$songID = $row['Song.ID'];
 			?>
 			<tr>
 				<form method="POST" action=""> 
+				<td><img src="<?php echo $row['Song.CoverArt']; ?>" height=160px/></td>
 				<td><?php echo $row['Song.Name']; ?></td>
 				<td><?php echo $row['Artist.Name'] ?></td>
 				<td>
@@ -228,50 +226,55 @@ function displaySongTable($PDO, $result, $search_string) {
 					<?php
 					$resultA = $PDO->query("SELECT * FROM Contributes WHERE `SongID` = '$songID' AND `RoleID` != '1'");
 						while ($rowA = $resultA->fetch(PDO::FETCH_ASSOC)) {
-							echo getArtistName($PDO, $rowA['ArtistID']) . " (" . getRoleName($PDO, $rowA['RoleID']) . ")   ";
+							echo getArtistName($PDO, $rowA['ArtistID']) . " (" . getRoleName($PDO, $rowA['RoleID']) . ") </br>";
 						}
 					?>	
 				</td>
 				<td>
-					<select name="Client" class="form-select" aria-label="Default select example">
-						<?php
-						$resultB = $PDO->query("SELECT * FROM `Person`;");
-						while ($rowB = $resultB->fetch(PDO::FETCH_ASSOC)) {
-						?>
-							<option value="<?php echo $rowB['ID']; ?>"><?php echo $rowB['FirstName'] . " " . $rowB['LastName'];?></option> 	
-						<?php }	?>
-					</select>
-				</td>
-				<td>
-					<select name="KFile" class="form-select" aria-label="Default select example">
-						<?php
-						$resultC = $PDO->query("SELECT * FROM AssociatedWith, Artist WHERE `SongID` = '$songID' AND ArtistID = Artist.ID");
-						$selections = array();
-						while ($rowC = $resultC->fetch(PDO::FETCH_ASSOC)) {
-							$selections[$rowC["KarFileID"]][] = $rowC["Name"];
-						}
-						foreach ($selections as $keyC=>$selC) {
-							echo "<option value=\"$keyC\">";
-							$m = count($selC);
-							$i = 0;
-							foreach ($selC as $artistC) {
-								echo $artistC;
-								if ($i < $m-1)
-									echo " & ";
-								$i++;
+					<div class="input-group mb-3">
+						<span class="input-group-text" id="basic-addon1">User</span>
+						<select name="Client" class="form-select" aria-label="Default select example">
+							<?php
+							$resultB = $PDO->query("SELECT * FROM `Person`;");
+							while ($rowB = $resultB->fetch(PDO::FETCH_ASSOC)) {
+								?>
+								<option value="<?php echo $rowB['ID']; ?>"><?php echo $rowB['FirstName'] . " " . $rowB['LastName'];?></option> 	
+								<?php }	?>
+							</select>
+						</div>
+						<div class="input-group mb-3">
+							<span class="input-group-text" id="basic-addon1">Karaoke</span>
+							<select name="KFile" class="form-select" aria-label="Default select example">
+								<?php
+							$resultC = $PDO->query("SELECT * FROM AssociatedWith, Artist WHERE `SongID` = '$songID' AND ArtistID = Artist.ID");
+							$selections = array();
+							while ($rowC = $resultC->fetch(PDO::FETCH_ASSOC)) {
+								$selections[$rowC["KarFileID"]][] = $rowC["Name"];
 							}
-							echo "</option>";
-						}
-						?>
-					</select>
-				</td>
-				<td>
-					<span class="input-group-text" id="basic-addon1"><i class="bi bi-currency-bitcoin"> </i></span>
-					<input type="text" class="form-control" placeholder="BTC" name="price">
-				</td>
-				<td>
-					<input type="submit" name="freeQ" value="Free Queue" class="btn btn-outline-primary"?><br>
-					<input type="submit" name="paidQ" value="Priority Queue" class="btn btn-outline-primary"/>
+							foreach ($selections as $keyC=>$selC) {
+								echo "<option value=\"$keyC\">";
+								$m = count($selC);
+								$i = 0;
+								foreach ($selC as $artistC) {
+									echo $artistC;
+									if ($i < $m-1)
+									echo " & ";
+									$i++;
+								}
+								echo "</option>";
+							}
+							?>
+						</select>
+					</div>
+					<div class="input-group mb-3">
+						<span class="input-group-text" id="basic-addon1"><i class="bi bi-currency-bitcoin"> </i></span>
+						<input type="text" class="form-control" placeholder="BTC" name="price">
+					</div>
+					<div class="input-group mb-3">
+						<span class="input-group-text" id="basic-addon1">Queue Type</span>
+						<input type="submit" name="paidQ" value="Paid" class="btn btn-outline-primary"/>
+						<input type="submit" name="freeQ" value="Free" class="btn btn-outline-primary">
+					</div>
 				</td>
 				<input type="hidden" name="ID" value="<?php echo $row['Song.ID']; ?>">
 				</form>
